@@ -1,0 +1,70 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  回文の判定}
+00003 \textcolor{comment}{ *   @date   2016/11/24}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(void)}
+00011 \textcolor{comment}{ *  @brief 回文の判定}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  入力：}
+00014 \textcolor{comment}{ *  - 標準入力から（空白を含まない99文字以下の）文字列が与えられる．}
+00015 \textcolor{comment}{ *}
+00016 \textcolor{comment}{ *  出力：}
+00017 \textcolor{comment}{ *  - 入力された文字列が回文かどうかを判定し，}
+00018 \textcolor{comment}{ *    回文であれば1，そうでなければ0を表示する．}
+00019 \textcolor{comment}{ *}
+00020 \textcolor{comment}{ *  入力例：}
+00021 \textcolor{comment}{\(\backslash\)verbatim}
+00022 \textcolor{comment}{fXZytlQelzKvXtcMBnttYvkZZkvYttnBMctXvKzleQltyZXf}
+00023 \textcolor{comment}{\(\backslash\)endverbatim}
+00024 \textcolor{comment}{  *  出力例：}
+00025 \textcolor{comment}{\(\backslash\)verbatim}
+00026 \textcolor{comment}{1}
+00027 \textcolor{comment}{\(\backslash\)endverbatim}
+00028 \textcolor{comment}{ *  入力例：}
+00029 \textcolor{comment}{\(\backslash\)verbatim}
+00030 \textcolor{comment}{sEFRvHhmWTQDnVLfMOChpDLRTetJdzrhMNEcmhmcENMRrzdJteTRLDphCOMfLVnDQTWmhHvRFEs}
+00031 \textcolor{comment}{\(\backslash\)endverbatim}
+00032 \textcolor{comment}{  *  出力例：}
+00033 \textcolor{comment}{\(\backslash\)verbatim}
+00034 \textcolor{comment}{0}
+00035 \textcolor{comment}{\(\backslash\)endverbatim}
+00036 \textcolor{comment}{ *  @date   2016/11/24}
+00037 \textcolor{comment}{ *  @author 佐伯雄飛,B162392}
+00038 \textcolor{comment}{ */}
+00039 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00040   \textcolor{keywordtype}{int} len = 100;
+00041   \textcolor{keywordtype}{char} input[100];
+00042   scanf(\textcolor{stringliteral}{"%99s"}, input);
+00043 
+00044   \textcolor{keywordtype}{int} n = 0;
+00045   \textcolor{keywordtype}{int} i = 0;
+00046   \textcolor{keywordflow}{for} (i = 0; i < len; i++) \{
+00047     \textcolor{keywordflow}{if} (input[i] != \textcolor{charliteral}{'\(\backslash\)0'})
+00048       n++;
+00049     \textcolor{keywordflow}{else}
+00050       \textcolor{keywordflow}{break};
+00051   \}
+00052 
+00053   \textcolor{keywordtype}{int} m = 1;
+00054 
+00055   \textcolor{keywordflow}{for} (i = 0; i <= n / 2; i++) \{
+00056     \textcolor{keywordflow}{if} (input[i] == input[n - i - 1])
+00057       m = 1;
+00058     \textcolor{keywordflow}{else} \{
+00059       m = 0;
+00060       \textcolor{keywordflow}{break};
+00061     \}
+00062   \}
+00063   printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, m);
+00064 
+00065   \textcolor{keywordflow}{return} 0;
+00066 \}
+\end{DoxyCode}

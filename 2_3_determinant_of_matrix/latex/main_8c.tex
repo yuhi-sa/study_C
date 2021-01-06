@@ -1,0 +1,111 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+2次元（または3次元）行列の行列式を計算する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 2次元（または3次元）行列の行列式を計算する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+2次元（または3次元）行列の行列式を計算する \begin{DoxyDate}{日付}
+2016/10/26 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+2次元（または3次元）行列の行列式を計算する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，まず行列が2次元か3次元かを区別する整数が与えられる． 2次元なら2，3次元なら3．
+\end{DoxyItemize}
+
+もしそれ以外の数値が与えられたら，プログラムは何も表示せずに終了する（return 0で）．
+\begin{DoxyItemize}
+\item それに引き続いて，2次元行列の要素 ( $ a_{11},a_{12},a_{21},a_{22} $) または3次元行列の要素 ( $ a_{11},a_{12},a_{13},a_{21},a_{22},a_{23},a_{31},a_{32},a_{33}$) がこの順番で与えられる． 値は実数．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた行列の行列式を計算し，それを標準出力に表示する．
+\item 数値は小数点第5位まで表示する（\%.5f）．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}2
+0.933942777791 0.402727471670
+0.181429362962 0.264556070201
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.17401
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}3
+0.638833848053 0.0150411981842 0.402224237664
+0.911355582360 0.8907163041810 0.419912154151
+0.383181998496 0.2191199720820 0.678895763639
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.26368
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/26 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00055                \{
+00056   \textcolor{keywordtype}{int} n;
+00057   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00058   \textcolor{keywordflow}{if} (n == 2 || n == 3) \{
+00059     \textcolor{keywordtype}{float} A[n][n];  \textcolor{comment}{// matrix A}
+00060 
+00061     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00062       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < n; j++) \{
+00063         scanf(\textcolor{stringliteral}{"%f"}, &A[i][j]);
+00064       \}
+00065     \}
+00066 
+00067     \textcolor{keywordtype}{float} det;
+00068     \textcolor{keywordflow}{if} (n == 2) \{
+00069       det = A[0][0] * A[1][1] - A[1][0] * A[0][1];  \textcolor{comment}{// a\_11 a\_22 - a\_21 a\_12}
+00070     \} \textcolor{keywordflow}{else} \{
+00071       \textcolor{comment}{// n == 3の場合のコードをここに書いてください}
+00072       det = A[0][0] * A[1][1] * A[2][2] - A[0][2] * A[1][1] * A[2][0] -
+00073             A[1][0] * A[0][1] * A[2][2] + A[1][0] * A[2][1] * A[0][2] +
+00074             A[0][1] * A[1][2] * A[2][0] - A[0][0] * A[1][2] * A[2][1];
+00075     \}
+00076     printf(\textcolor{stringliteral}{"%.5f\(\backslash\)n"}, det);
+00077   \} \textcolor{keywordflow}{else} \{
+00078     printf(\textcolor{stringliteral}{""});
+00079   \}
+00080   \textcolor{keywordflow}{return} 0;
+00081 \}
+\end{DoxyCode}

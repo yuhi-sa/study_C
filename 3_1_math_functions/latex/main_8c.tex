@@ -1,0 +1,98 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+数値に数学関数を適用する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 数値に数学関数を適用する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+数値に数学関数を適用する \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+数値に数学関数を適用する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，実数が1つ与えられる．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた実数xの平方根，0.8乗，3.4乗， sin(x)，常用対数，自然対数を計算し， この順番で標準出力に表示する．
+\item 数値は小数点第5位まで表示する（\%.5f）
+\item 数値と数値の間には空白を1ついれる
+\item 実数xが正の実数ではない場合， \begin{DoxyVerb}Error: the number must be positive
+\end{DoxyVerb}
+ というエラーを表示し，（return 0で）終了する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}3.1
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1.76068 2.47223 46.84139 0.04158 0.49136 1.13140
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}-4
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}Error: the number must be positive
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00048                \{
+00049   \textcolor{keywordtype}{float} x;
+00050   scanf(\textcolor{stringliteral}{"%f"}, &x);
+00051 
+00052   \textcolor{keywordflow}{if} (x >= 0) \{
+00053     printf(\textcolor{stringliteral}{"%.5f "}, sqrtf(x));
+00054     printf(\textcolor{stringliteral}{"%.5f "}, powf(x, 0.8));
+00055     printf(\textcolor{stringliteral}{"%.5f "}, powf(x, 3.4));
+00056     printf(\textcolor{stringliteral}{"%.5f "}, sinf(x));
+00057     printf(\textcolor{stringliteral}{"%.5f "}, log10(x));
+00058     printf(\textcolor{stringliteral}{"%.5f"}, log(x));
+00059     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00060   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (x < 0) \{
+00061     printf(\textcolor{stringliteral}{"Error: the number must be positive"});
+00062     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00063   \}
+00064 
+00065   \textcolor{keywordflow}{return} 0;
+00066 \}
+\end{DoxyCode}

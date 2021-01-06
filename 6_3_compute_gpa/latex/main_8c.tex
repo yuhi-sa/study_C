@@ -1,0 +1,151 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+G\-P\-Aの計算  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em G\-P\-Aの計算 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+G\-P\-Aの計算 \begin{DoxyDate}{日付}
+2017/1/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+G\-P\-Aの計算 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，まず学生数が与えられる
+\item 続いて講義数が与えられる．それに引き続いて， 空白で区切られた講義コード（6桁）が講義数分与えられる．
+\item 続いて「学生番号（6桁），講義コード，素点（100点満点）」が （空白で区切られて）与えられる． このフォーマットは，一人の学生について異なる講義コードが連続しており， その学生の成績がすべて与えられたら，別の学生の成績が与えられる．
+\item 仮定：すべての学生は同じ講義を受講していると仮定する （入力はこの仮定を満たしている）
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 各学生について，\-G\-P\-Aを計算する．
+\item ある講義の成績：点数が90点〜100点とき，秀． 点数が80点〜89点とき，優． 点数が70点〜79点とき，良． 点数が60点〜69点とき，可．
+\item ある講義の点数が60点以上のとき，その講義に合格し，2単位を取得する．
+\item G\-P\-A = (秀の単位数 $\ast$ 4 + 優の単位数 $\ast$ 3 + 良の単位数 $\ast$ 2 + 可の単位数 $\ast$ 1) / (総登録単位数 $\ast$ 4)
+\begin{DoxyItemize}
+\item 100
+\end{DoxyItemize}
+\item 出力は，学生番号（\%06d），\-G\-P\-A（\%.2f）の順に，空白で区切り，改行する．
+\end{DoxyItemize}
+
+入力例（途中省略）： \begin{DoxyVerb}150
+20
+030323 044417 112271 166084 230334 288383 304507 343261 375762 408164 415311
+417011 467643 486000 518187 618065 674215 712181 755421 883186
+002487 030323 74
+002487 044417 41
+002487 112271 64
+002487 166084 38
+002487 230334 72
+002487 288383 82
+002487 304507 67
+...
+886870 417011 85
+886870 467643 61
+886870 486000 75
+886870 518187 88
+886870 618065 76
+886870 674215 73
+886870 712181 69
+886870 755421 90
+886870 883186 83
+\end{DoxyVerb}
+ 出力例（途中省略）： \begin{DoxyVerb}002487 48.75
+023065 48.75
+038034 42.50
+038177 45.00
+044436 57.50
+050530 46.25
+...
+874131 62.50
+875426 47.50
+880624 43.75
+881667 50.00
+882464 57.50
+886516 38.75
+886870 56.25
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2017/1/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00080                                  \{
+00081   \textcolor{keywordtype}{int} num\_students;
+00082   scanf(\textcolor{stringliteral}{"%d"}, &num\_students);
+00083 
+00084   \textcolor{keywordtype}{int} num\_class;
+00085   scanf(\textcolor{stringliteral}{"%d"}, &num\_class);
+00086 
+00087   \textcolor{keywordtype}{int} class\_codes[num\_class];
+00088   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_class; i++) \{
+00089     scanf(\textcolor{stringliteral}{"%d"}, &class\_codes[i]);
+00090   \}
+00091 
+00092   \textcolor{keywordtype}{int} student\_id, class\_code, score;
+00093 
+00094   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < num\_students; s++) \{
+00095     \textcolor{keywordtype}{float} a = 0;
+00096     \textcolor{keywordtype}{float} b = 0;
+00097     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} c = 0; c < num\_class; c++) \{
+00098       scanf(\textcolor{stringliteral}{"%d"}, &student\_id);
+00099       scanf(\textcolor{stringliteral}{"%d"}, &class\_code);
+00100       scanf(\textcolor{stringliteral}{"%d"}, &score);
+00101       \textcolor{keywordflow}{if} (score >= 90)
+00102         a += 4;
+00103       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (score >= 80)
+00104         a += 3;
+00105       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (score >= 70)
+00106         a += 2;
+00107       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (score >= 60)
+00108         a += 1;
+00109     \}
+00110     \textcolor{keywordtype}{int} d = num\_class * 4;
+00111     b = a / d * 100;
+00112 
+00113     printf(\textcolor{stringliteral}{"%06d %.2f\(\backslash\)n"}, student\_id, b);
+00114   \}
+00115 
+00116   \textcolor{keywordflow}{return} 0;
+00117 \}
+\end{DoxyCode}

@@ -1,0 +1,109 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  実数の2進数表示}
+00003 \textcolor{comment}{ *   @date   2017/1/24}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{preprocessor}{#include <math.h>}
+00010 \textcolor{comment}{}
+00011 \textcolor{comment}{/** @fn int main(void)}
+00012 \textcolor{comment}{ *  @brief  実数の2進数表示}
+00013 \textcolor{comment}{ *}
+00014 \textcolor{comment}{ *  入力：}
+00015 \textcolor{comment}{ *  - 標準入力に10進数の実数が1つ与えられる（255〜-255まで）}
+00016 \textcolor{comment}{ *}
+00017 \textcolor{comment}{ *  出力：}
+00018 \textcolor{comment}{ *  - 与えられた実数の2進数を表示する．}
+00019 \textcolor{comment}{ *  - 整数部・実数部ともに2進数8桁（0で埋める）．2の補数表現は使用しない．}
+00020 \textcolor{comment}{ *  - 先頭に符号をつける（負の場合のみ）}
+00021 \textcolor{comment}{ *}
+00022 \textcolor{comment}{ *  入力例：}
+00023 \textcolor{comment}{\(\backslash\)verbatim}
+00024 \textcolor{comment}{16}
+00025 \textcolor{comment}{  *  出力例：}
+00026 \textcolor{comment}{\(\backslash\)verbatim}
+00027 \textcolor{comment}{00010000.00000000}
+00028 \textcolor{comment}{\(\backslash\)endverbatim}
+00029 \textcolor{comment}{\(\backslash\)verbatim}
+00030 \textcolor{comment}{26.1875}
+00031 \textcolor{comment}{  *  出力例：}
+00032 \textcolor{comment}{\(\backslash\)verbatim}
+00033 \textcolor{comment}{00011010.00110000}
+00034 \textcolor{comment}{\(\backslash\)endverbatim}
+00035 \textcolor{comment}{ *  入力例：}
+00036 \textcolor{comment}{\(\backslash\)verbatim}
+00037 \textcolor{comment}{-26.1875}
+00038 \textcolor{comment}{  *  出力例：}
+00039 \textcolor{comment}{\(\backslash\)verbatim}
+00040 \textcolor{comment}{-00011010.00110000}
+00041 \textcolor{comment}{\(\backslash\)endverbatim}
+00042 \textcolor{comment}{  *  入力例：}
+00043 \textcolor{comment}{\(\backslash\)verbatim}
+00044 \textcolor{comment}{-127.99609375}
+00045 \textcolor{comment}{\(\backslash\)endverbatim}
+00046 \textcolor{comment}{  *  出力例：}
+00047 \textcolor{comment}{\(\backslash\)verbatim}
+00048 \textcolor{comment}{-01111111.11111111}
+00049 \textcolor{comment}{\(\backslash\)endverbatim}
+00050 \textcolor{comment}{ *  @date   2017/1/24}
+00051 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00052 \textcolor{comment}{ */}
+00053 
+00054 \textcolor{preprocessor}{#include <stdio.h>}
+00055 \textcolor{preprocessor}{#include <math.h>}
+00056 \textcolor{preprocessor}{#include <stdlib.h>}
+00057 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00058   \textcolor{keywordtype}{float} f;
+00059   \textcolor{keywordtype}{float} seisuu;
+00060   \textcolor{keywordtype}{float} syousuu;
+00061 
+00062   scanf(\textcolor{stringliteral}{"%f"}, &f);
+00063 
+00064   syousuu = modff(f, &seisuu);
+00065 
+00066   \textcolor{keywordflow}{if} (seisuu < 0) \{
+00067     seisuu = 0 - seisuu;
+00068     syousuu = 0 - syousuu;
+00069     printf(\textcolor{stringliteral}{"-"});
+00070   \}
+00071 
+00072   \textcolor{keywordtype}{int} i;
+00073   \textcolor{keywordtype}{int} x = (int)seisuu;
+00074   \textcolor{keywordtype}{int} a[40];
+00075   \textcolor{keywordflow}{for} (i = 0; 8 > i; i++) \{
+00076     a[i] = x % 2;
+00077     x = x / 2;
+00078   \}
+00079   \textcolor{keywordflow}{while} (i > 0) \{
+00080     printf(\textcolor{stringliteral}{"%d"}, a[--i]);
+00081   \}
+00082   printf(\textcolor{stringliteral}{"."});
+00083 
+00084   \textcolor{keywordtype}{int} c[9];
+00085   \textcolor{keywordtype}{int} m, l, j;
+00086 
+00087   \textcolor{keywordflow}{for} (l = 0; syousuu > 0; l++) \{
+00088     m = (int)(syousuu / 0.5);
+00089 
+00090     syousuu = syousuu / 0.5 - (float)m;
+00091 
+00092     c[l] = m + 0;
+00093 
+00094     \textcolor{keywordflow}{if} (l > 7)
+00095       \textcolor{keywordflow}{break};
+00096   \}
+00097 
+00098   \textcolor{keywordflow}{for} (j = 0; j < l; j++) 
+00099   \{
+00100     printf(\textcolor{stringliteral}{"%d"}, c[j]);
+00101   \}
+00102   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00103 
+00104   \textcolor{keywordflow}{return} 0;
+00105 \}
+\end{DoxyCode}

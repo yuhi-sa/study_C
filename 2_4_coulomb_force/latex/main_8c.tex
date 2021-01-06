@@ -1,0 +1,113 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+2つの静電荷間に働く力の計算  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 2つの静電荷間に働く力の計算 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+2つの静電荷間に働く力の計算 \begin{DoxyDate}{日付}
+2016/10/27 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+2つの静電荷間に働く力の計算 
+
+標準入力から2つの静電荷の電荷量と3次元座標を読み込み， その間に働く力をクーロンの法則により求める
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初の実数は，1つ目の静電荷の電荷量
+\item それに引き続く3個の実数は1つ目の静電荷の座標(x,y,z)
+\item 次に続く実数は，2つ目の静電荷の電荷量
+\item それに引き続く3個の実数は2つ目の静電荷の座標(x,y,z)
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 2つの静電荷間に働く力を計算し，表示する．
+\item 数値は指数形式で，小数点第6位まで表示する(\%.6e)．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}0.000308699789318
+0.000402224300987 0.000279583777408 0.000174189877294
+-0.000239153024041
+-5.80356914685e-05 -0.000160431721634 -6.19990827336e-05
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1.440554e+09
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}5.89869864357e-05
+-0.000307976825127 -0.000255850688569 -0.000440580236465
+-0.000381973244918
+-0.000129578394884 -0.000480165202626 -0.000181748151379
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}-1.359709e+09
+\end{DoxyVerb}
+ \begin{DoxyVerb}@date   2016/10/27
+@author 佐伯雄飛，B162392\end{DoxyVerb}
+ 
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00053                \{
+00054   \textcolor{keywordtype}{float} k0 = 9.0e9;      \textcolor{comment}{// about 9.0 x 10^9 [N m^2 / C^2]}
+00055   \textcolor{keywordtype}{float} q[2];            \textcolor{comment}{// charges of two particles [C]}
+00056   \textcolor{keywordtype}{float} r[2][3];         \textcolor{comment}{// 3D coordinates of two particles [m]}
+00057   \textcolor{keywordtype}{float} distance = 0.0;  \textcolor{comment}{// (square of) distance between two particles}
+00058   \textcolor{keywordtype}{float} tempt;
+00059   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 2; i++) \{
+00060     scanf(\textcolor{stringliteral}{"%e"}, &q[i]);  \textcolor{comment}{// ここでqを読み込む}
+00061     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 3; j++) \{
+00062       scanf(\textcolor{stringliteral}{"%e"}, &r[i][j]);  \textcolor{comment}{// ここでrを読み込む}
+00063     \}
+00064   \}
+00065 
+00066   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 3; j++) \{
+00067     \textcolor{keywordtype}{float} temp = r[0][j] - r[1][j];
+00068     distance += temp * temp;
+00069   \}
+00070   \textcolor{comment}{// ここでdistanceを計算する}
+00071 
+00072   \textcolor{keywordtype}{float} F;
+00073   \textcolor{keywordflow}{if} (distance > 0) \{
+00074     F = k0 * q[0] * q[1] / distance;  \textcolor{comment}{// [N]}
+00075   \} \textcolor{keywordflow}{else} \{
+00076     F = 0;
+00077   \}
+00078 
+00079   printf(\textcolor{stringliteral}{"%.6e"}, F);
+00080   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00081   \textcolor{comment}{// ここでFを表示する}
+00082 
+00083   \textcolor{keywordflow}{return} 0;
+00084 \}
+\end{DoxyCode}

@@ -1,0 +1,53 @@
+\subsection{functions.\-c ファイル}
+\label{functions_8c}\index{functions.\-c@{functions.\-c}}
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{functions_8c_a0b5ca9d442c39ef5442bd2e51473347d}{lower2upper} (char c)
+\begin{DoxyCompactList}\small\item\em アルファベット小文字だけを大文字に変換する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{関数詳解}
+\index{functions.\-c@{functions.\-c}!lower2upper@{lower2upper}}
+\index{lower2upper@{lower2upper}!functions.c@{functions.\-c}}
+\paragraph[{lower2upper}]{\setlength{\rightskip}{0pt plus 5cm}char lower2upper (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\label{functions_8c_a0b5ca9d442c39ef5442bd2e51473347d}
+
+
+アルファベット小文字だけを大文字に変換する 
+
+仕様：
+\begin{DoxyItemize}
+\item アルファベット小文字(aからz)：大文字(Aから\-Z)に変換して返す
+\item それ以外の文字：そのまま返す
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{引数}
+{\em c} & 文字（char型） \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+変換した文字（char型） 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00014                          \{
+00015   \textcolor{keywordflow}{if} (c >= 97 && c <= 122) \{
+00016     c = c - 32;
+00017   \}
+00018 \}
+\end{DoxyCode}

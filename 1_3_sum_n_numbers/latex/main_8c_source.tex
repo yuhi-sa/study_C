@@ -1,0 +1,59 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  n個の実数の和を表示する}
+00003 \textcolor{comment}{ *   @date   2016/10/17}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(void)}
+00011 \textcolor{comment}{ *  @brief  n個の実数の和を表示する}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  入力：}
+00014 \textcolor{comment}{ *  - 標準入力の最初は実数の個数n（正の整数)}
+00015 \textcolor{comment}{ *  - それに引き続いてn個の実数が与えられる}
+00016 \textcolor{comment}{ *}
+00017 \textcolor{comment}{ *  出力：}
+00018 \textcolor{comment}{ *  - n個の整数の和を（小数点第1位まで）表示する}
+00019 \textcolor{comment}{ *}
+00020 \textcolor{comment}{ *  入力例：}
+00021 \textcolor{comment}{\(\backslash\)verbatim}
+00022 \textcolor{comment}{10 0.17092690844 0.269405693204 0.272729853937 0.83502923788 0.539916669772}
+00023 \textcolor{comment}{0.186507679728 0.660337164448 0.335226340127 0.440513411122 0.75002980058}
+00024 \textcolor{comment}{\(\backslash\)endverbatim}
+00025 \textcolor{comment}{  *  出力例：}
+00026 \textcolor{comment}{\(\backslash\)verbatim}
+00027 \textcolor{comment}{4.5}
+00028 \textcolor{comment}{\(\backslash\)endverbatim}
+00029 \textcolor{comment}{  *  入力例：}
+00030 \textcolor{comment}{\(\backslash\)verbatim}
+00031 \textcolor{comment}{6 0.344080271438 0.462451151037 0.76436728616 0.592085694456 0.145033025297}
+00032 \textcolor{comment}{0.167567732804}
+00033 \textcolor{comment}{\(\backslash\)endverbatim}
+00034 \textcolor{comment}{  *  出力例：}
+00035 \textcolor{comment}{\(\backslash\)verbatim}
+00036 \textcolor{comment}{2.5}
+00037 \textcolor{comment}{\(\backslash\)endverbatim}
+00038 \textcolor{comment}{ *  @date   2016/10/17}
+00039 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00040 \textcolor{comment}{ */}
+00041 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00042   \textcolor{keywordtype}{int} n;
+00043   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00044 
+00045   \textcolor{keywordtype}{float} sum = 0;
+00046   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= n; i++) \{
+00047     \textcolor{keywordtype}{float} number;
+00048     scanf(\textcolor{stringliteral}{"%f"}, &number);
+00049     sum += number;
+00050   \}
+00051 
+00052   printf(\textcolor{stringliteral}{"%.1f\(\backslash\)n"}, sum);  \textcolor{comment}{// 小数点第1位まで表示させる}
+00053 
+00054   \textcolor{keywordflow}{return} 0;
+00055 \}
+\end{DoxyCode}

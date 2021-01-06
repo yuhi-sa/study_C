@@ -1,0 +1,38 @@
+\subsection{functions.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{}
+00002 \textcolor{comment}{/** @fn int find\_letter(char x, char str[])}
+00003 \textcolor{comment}{ *  @brief  文字列str中の文字xの位置を返す}
+00004 \textcolor{comment}{ *}
+00005 \textcolor{comment}{ *  仕様：}
+00006 \textcolor{comment}{ *  - 文字列の最初の文字がxであれば0，}
+00007 \textcolor{comment}{ *    2番目の文字がxであれば1，（以下同文）とする．}
+00008 \textcolor{comment}{ *  - 2回以上xが出現する場合には，最初の位置を返す}
+00009 \textcolor{comment}{ *}
+00010 \textcolor{comment}{ *  @param  x 検索する文字（char型）}
+00011 \textcolor{comment}{ *  @param  str 検索対象の文字列（char[]型）}
+00012 \textcolor{comment}{ *  @return 文字xの位置（int型）．}
+00013 \textcolor{comment}{ *          ただし文字xが文字列str中に存在しない場合には-1を返す．}
+00014 \textcolor{comment}{ *  @date   2016/11/10}
+00015 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00016 \textcolor{comment}{}
+00017 \textcolor{comment}{}
+00018 \textcolor{comment}{ */}
+00019 
+00020 \textcolor{keywordtype}{int} find_letter(\textcolor{keywordtype}{char} x, \textcolor{keywordtype}{char} str[]) \{
+00021   \textcolor{keywordtype}{int} j;
+00022   \textcolor{keywordtype}{int} a;
+00023 
+00024   \textcolor{keywordflow}{for} (j = 0; str[j] != \textcolor{charliteral}{'\(\backslash\)0'}; j++) \{
+00025     \textcolor{keywordflow}{if} (str[j] == x) \{
+00026       a = j;
+00027       \textcolor{keywordflow}{break};
+00028     \} \textcolor{keywordflow}{else} \{
+00029       a = -1;
+00030     \}
+00031   \}
+00032 
+00033   \textcolor{keywordflow}{return} a;
+00034 \}
+\end{DoxyCode}

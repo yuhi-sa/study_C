@@ -1,0 +1,105 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+2個の実数に演算を適用する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 2個の実数に演算を適用する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+2個の実数に演算を適用する \begin{DoxyDate}{日付}
+2016/10/17 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+2個の実数に演算を適用する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初は演算子を表す文字（+, -\/, $\ast$, / のいずれか）
+\item それに引き続く2個の実数は演算子を適用する数値
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 2個の数値に演算子を適用した結果の数値を出力する
+\item 数値は小数点第2位まで表示する（\%.2f）．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}+ 0.912665355362 0.306135641218
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1.22
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}/ 0.914028521038 0.759992013169
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1.20
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/17 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00040                \{
+00041   \textcolor{keywordtype}{char} \textcolor{keyword}{operator};
+00042   scanf(\textcolor{stringliteral}{"%c"}, &\textcolor{keyword}{operator});
+00043 
+00044   \textcolor{keywordtype}{float} operand1;
+00045   \textcolor{keywordtype}{float} operand2;
+00046   scanf(\textcolor{stringliteral}{"%f"}, &operand1);
+00047   scanf(\textcolor{stringliteral}{"%f"}, &operand2);
+00048 
+00049   \textcolor{keywordtype}{float} result;
+00050   \textcolor{keywordflow}{switch} (\textcolor{keyword}{operator}) \{
+00051     \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:
+00052       result = operand1 + operand2;
+00053       \textcolor{keywordflow}{break};
+00054     \textcolor{keywordflow}{case} \textcolor{charliteral}{'-'}:
+00055       result = operand1 - operand2;
+00056       \textcolor{keywordflow}{break};
+00057     \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}:
+00058       result = operand1 * operand2;
+00059       \textcolor{keywordflow}{break};
+00060     \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}:
+00061       result = operand1 / operand2;
+00062       \textcolor{keywordflow}{break};
+00063     \textcolor{keywordflow}{default}:  \textcolor{comment}{// unknown operator}
+00064       result = 0;
+00065   \}
+00066   printf(\textcolor{stringliteral}{"%.2f\(\backslash\)n"}, result);
+00067 
+00068   \textcolor{keywordflow}{return} 0;
+00069 \}
+\end{DoxyCode}

@@ -1,0 +1,150 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+文字列から文字を検索する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0c4e642e83c26e043e4fcc3086cd2561}{find\-\_\-letter} (char x, char str\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 文字列str中の文字xの位置を返す \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 文字列から文字を検索する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+文字列から文字を検索する \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!find\-\_\-letter@{find\-\_\-letter}}
+\index{find\-\_\-letter@{find\-\_\-letter}!main.c@{main.\-c}}
+\paragraph[{find\-\_\-letter}]{\setlength{\rightskip}{0pt plus 5cm}int find\-\_\-letter (
+\begin{DoxyParamCaption}
+\item[{char}]{x, }
+\item[{char}]{str\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0c4e642e83c26e043e4fcc3086cd2561}
+
+
+文字列str中の文字xの位置を返す 
+
+仕様：
+\begin{DoxyItemize}
+\item 文字列の最初の文字がxであれば0， 2番目の文字がxであれば1，（以下同文）とする．
+\item 2回以上xが出現する場合には，最初の位置を返す
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{引数}
+{\em x} & 検索する文字（char型） \\
+\hline
+{\em str} & 検索対象の文字列（char\mbox{[}\mbox{]}型） \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+文字xの位置（int型）． ただし文字xが文字列str中に存在しない場合には-\/1を返す． 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00020                                     \{
+00021   \textcolor{keywordtype}{int} j;
+00022   \textcolor{keywordtype}{int} a;
+00023 
+00024   \textcolor{keywordflow}{for} (j = 0; str[j] != \textcolor{charliteral}{'\(\backslash\)0'}; j++) \{
+00025     \textcolor{keywordflow}{if} (str[j] == x) \{
+00026       a = j;
+00027       \textcolor{keywordflow}{break};
+00028     \} \textcolor{keywordflow}{else} \{
+00029       a = -1;
+00030     \}
+00031   \}
+00032 
+00033   \textcolor{keywordflow}{return} a;
+00034 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+文字列から文字を検索する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力から，まず文字xが1つ与えられる
+\item 続いて，空白を含まない文字列strが1つ与えられる．長さはlen以下．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 文字列str中の文字xの位置を表示する． 文字列の最初の文字がxであれば0を，2番目の文字がxであれば1を， （以下同文）出力する． 2回以上xが出現する場合には，最初の位置を表示する． ただし文字xが文字列str中に存在しない場合には-\/1を表示する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}a This_is_a_pen
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}8
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}f vws8a&&Xbeg6flsXW8pdfAinv//MQNh<ST8CFD
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}12
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}- CBk1<6
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}-1
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00054                \{
+00055   \textcolor{keywordtype}{char} x;
+00056   scanf(\textcolor{stringliteral}{"%c"}, &x);
+00057 
+00058   \textcolor{keywordtype}{int} len = 100;
+00059   \textcolor{keywordtype}{char} str[len];
+00060   scanf(\textcolor{stringliteral}{"%99s"}, str);
+00061 
+00062   \textcolor{keywordtype}{int} location = find_letter(x, str);
+00063 
+00064   printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, location);
+00065 
+00066   \textcolor{keywordflow}{return} 0;
+00067 \}
+\end{DoxyCode}

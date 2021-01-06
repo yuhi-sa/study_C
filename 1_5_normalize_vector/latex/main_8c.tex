@@ -1,0 +1,110 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+ベクトルxの要素をノルムの2乗で割ったものを表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em n次元ベクトルxを読み込み，ノルムの2乗で割る \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+ベクトルxの要素をノルムの2乗で割ったものを表示する \begin{DoxyDate}{日付}
+2016/10/17 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+n次元ベクトルxを読み込み，ノルムの2乗で割る 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初の整数はn（nは1以上の整数）
+\item それに引き続くn個の実数はベクトルxの要素 ( $x = (x_1, x_2, \ldots, x_n) $)
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item ベクトルxの各要素 $x_i$を xのノルムの2乗で割ったもの（ $ \frac{x_i}{\| x \|^2} $）を， 縦1列に小数点第6位まで標準出力に表示する（\%.6f）．
+\item ただしxのノルムが0の場合には，0ベクトルを表示すること
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}3 0.7995454735237852 0.6355523363250306 0.4970340257100355
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.619686
+0.492584
+0.385225
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}8 0.192413183882287 0.3592929421318327 0.43304124430348645 0.04812775140485881
+0.8097877087349868 0.4454853632738086 0.5002661497859434 0.2942751129005189
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.124376
+0.232247
+0.279917
+0.031110
+0.523446
+0.287961
+0.323371
+0.190219
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/17 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00053                \{
+00054   \textcolor{keywordtype}{int} length;
+00055   scanf(\textcolor{stringliteral}{"%d"}, &length);
+00056 
+00057   \textcolor{keywordtype}{float} x[length];
+00058   \textcolor{keywordtype}{float} sum\_x = 0.0;
+00059   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < length; i++) \{
+00060     scanf(\textcolor{stringliteral}{"%f"},
+00061           &x[i]);  \textcolor{comment}{// ここで標準入力から実数を読み込み，x[i]に代入してください}
+00062 
+00063     sum\_x += x[i] * x[i];
+00064   \}
+00065 
+00066   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < length; i++) \{
+00067     \textcolor{keywordflow}{if} (sum\_x > 0) \{
+00068       x[i] /= sum\_x;
+00069     \} \textcolor{keywordflow}{else} \{
+00070       x[i] = 0.0;
+00071     \}
+00072 
+00073     printf(\textcolor{stringliteral}{"%.6f\(\backslash\)n"}, x[i]);  \textcolor{comment}{// ここでx[i]を表示してください}
+00074   \}
+00075 
+00076   \textcolor{keywordflow}{return} 0;
+00077 \}
+\end{DoxyCode}

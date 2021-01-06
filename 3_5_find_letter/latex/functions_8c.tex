@@ -1,0 +1,66 @@
+\subsection{functions.\-c ファイル}
+\label{functions_8c}\index{functions.\-c@{functions.\-c}}
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{functions_8c_a0c4e642e83c26e043e4fcc3086cd2561}{find\-\_\-letter} (char x, char str\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 文字列str中の文字xの位置を返す \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{関数詳解}
+\index{functions.\-c@{functions.\-c}!find\-\_\-letter@{find\-\_\-letter}}
+\index{find\-\_\-letter@{find\-\_\-letter}!functions.c@{functions.\-c}}
+\paragraph[{find\-\_\-letter}]{\setlength{\rightskip}{0pt plus 5cm}int find\-\_\-letter (
+\begin{DoxyParamCaption}
+\item[{char}]{x, }
+\item[{char}]{str\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{functions_8c_a0c4e642e83c26e043e4fcc3086cd2561}
+
+
+文字列str中の文字xの位置を返す 
+
+仕様：
+\begin{DoxyItemize}
+\item 文字列の最初の文字がxであれば0， 2番目の文字がxであれば1，（以下同文）とする．
+\item 2回以上xが出現する場合には，最初の位置を返す
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{引数}
+{\em x} & 検索する文字（char型） \\
+\hline
+{\em str} & 検索対象の文字列（char\mbox{[}\mbox{]}型） \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+文字xの位置（int型）． ただし文字xが文字列str中に存在しない場合には-\/1を返す． 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00020                                     \{
+00021   \textcolor{keywordtype}{int} j;
+00022   \textcolor{keywordtype}{int} a;
+00023 
+00024   \textcolor{keywordflow}{for} (j = 0; str[j] != \textcolor{charliteral}{'\(\backslash\)0'}; j++) \{
+00025     \textcolor{keywordflow}{if} (str[j] == x) \{
+00026       a = j;
+00027       \textcolor{keywordflow}{break};
+00028     \} \textcolor{keywordflow}{else} \{
+00029       a = -1;
+00030     \}
+00031   \}
+00032 
+00033   \textcolor{keywordflow}{return} a;
+00034 \}
+\end{DoxyCode}

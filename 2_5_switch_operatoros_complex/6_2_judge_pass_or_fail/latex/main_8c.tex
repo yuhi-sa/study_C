@@ -1,0 +1,141 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+課程配属条件の判定  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 課程配属条件の判定 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+課程配属条件の判定 \begin{DoxyDate}{日付}
+2017/1/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+課程配属条件の判定 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，まず学生数が与えられる
+\item 続いて講義数が与えられる．それに引き続いて， 空白で区切られた講義コード（6桁）が講義数分与えられる．
+\item 続いて「学生番号（6桁），講義コード，素点（100点満点）」が （空白で区切られて）与えられる． このフォーマットは，一人の学生について異なる講義コードが連続しており， その学生の成績がすべて与えられたら，別の学生の成績が与えられる．
+\item 仮定：すべての学生は同じ講義を受講していると仮定する （入力はこの仮定を満たしている）
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 各学生について，課程配属条件を満たしているかどうかを表示する．
+\item ある学生が32単位以上を取得している場合，課程配属条件満たす．
+\item ある講義の点数が60点以上のとき，その講義に合格し，2単位を取得する． 60点未満であれば不合格であり，単位を取得できない．
+\item 出力は，学生番号（\%06d），取得単位数（d）， 判定結果（\char`\"{}fail\char`\"{}か\char`\"{}pass\char`\"{}）の順に空白で区切り，改行する．
+\end{DoxyItemize}
+
+入力例（途中省略）： \begin{DoxyVerb}150
+20
+030323 044417 112271 166084 230334 288383 304507 343261 375762 408164 415311
+417011 467643 486000 518187 618065 674215 712181 755421 883186
+002487 030323 74
+002487 044417 41
+002487 112271 64
+002487 166084 38
+002487 230334 72
+002487 288383 82
+002487 304507 67
+...
+886870 417011 85
+886870 467643 61
+886870 486000 75
+886870 518187 88
+886870 618065 76
+886870 674215 73
+886870 712181 69
+886870 755421 90
+886870 883186 83
+\end{DoxyVerb}
+ 出力例（途中省略）： \begin{DoxyVerb}002487 34 pass
+023065 32 pass
+038034 30 fail
+038177 32 pass
+044436 36 pass
+050530 34 pass
+...
+874131 40 pass
+875426 34 pass
+880624 34 pass
+881667 38 pass
+882464 38 pass
+886516 30 fail
+886870 36 pass
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2017/1/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00076                                  \{
+00077   \textcolor{keywordtype}{int} num\_students;
+00078   scanf(\textcolor{stringliteral}{"%d"}, &num\_students);
+00079 
+00080   \textcolor{keywordtype}{int} num\_class;
+00081   scanf(\textcolor{stringliteral}{"%d"}, &num\_class);
+00082 
+00083   \textcolor{keywordtype}{int} class\_codes[num\_class];
+00084   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_class; i++) \{
+00085     scanf(\textcolor{stringliteral}{"%d"}, &class\_codes[i]);
+00086   \}
+00087 
+00088   \textcolor{keywordtype}{int} student\_id, class\_code, score;
+00089 
+00090   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < num\_students; s++) \{
+00091     \textcolor{keywordtype}{int} a = 0;
+00092     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} c = 0; c < num\_class; c++) \{
+00093       scanf(\textcolor{stringliteral}{"%d"}, &student\_id);
+00094       scanf(\textcolor{stringliteral}{"%d"}, &class\_code);
+00095       scanf(\textcolor{stringliteral}{"%d"}, &score);
+00096       \textcolor{keywordflow}{if} (score >= 60) \{
+00097         a += 2;
+00098       \}
+00099     \}
+00100     \textcolor{keywordflow}{if} (a > 31)
+00101       printf(\textcolor{stringliteral}{"%06d %d pass\(\backslash\)n"}, student\_id, a);
+00102     \textcolor{keywordflow}{else}
+00103       printf(\textcolor{stringliteral}{"%06d %d fail\(\backslash\)n"}, student\_id, a);
+00104   \}
+00105 
+00106   \textcolor{keywordflow}{return} 0;
+00107 \}
+\end{DoxyCode}

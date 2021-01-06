@@ -1,0 +1,129 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+文字列中の，大文字と小文字のヒストグラムを作成する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$ctype.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 文字列中の，大文字と小文字のヒストグラムを作成する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+文字列中の，大文字と小文字のヒストグラムを作成する \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+文字列中の，大文字と小文字のヒストグラムを作成する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には検索対象の，空白と改行を含む文字列が与えられる． 長さは不明（ただしmax\-\_\-int以下とする）．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 文字列に含まれる大文字の数を，\-Aから\-Zの順番に（\%5dで）表示し，改行する．
+\item 文字列に含まれる小文字の数を，aからzの順番に（\%5dで）表示し，改行する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}dpMhhyPmc yI DT iJUXpNfh RpV PPWJGvcE nuUB jqYjBrPqs
+cS ysO rDE eRiZNQS YjwrGKI Ujg
+OeurKNK zTSGVHej SxR iDmueNb
+\end{DoxyVerb}
+ 出力例（フォーマットの都合上改行されています）： \begin{DoxyVerb}    0     2     0     3     2     0     3     1     2     2     3     0     1
+4     2     4     1     3     4     2     3     2     1     1     2     1
+    0     1     3     1     4     1     1     3     3     5     0     0     2
+1     0     3     2     4     2     0     3     1     1     1     3     1
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}YjbiSz VdGaIJ
+kJSJQNxNX YoPZY Rwe
+FX zUUCazG lttNJ dVeNwI ZMEyXkOmg XGHW VBHJ
+MkcR LdZT KHO LI InoJhFI
+Yo JKSBedv CEgYo xvulXS pIIC wFj Lw
+MRvqx mz gMMhJ
+qfDxEn DNX wdtGFdtBa uektgqxS EKDteMYG pJq
+Wdi XXLjM scXkn soxPTZs yNQggfT WTpEb
+\end{DoxyVerb}
+ 出力例（フォーマットの都合上改行されています）： \begin{DoxyVerb}    0     3     3     3     5     4     5     3     7     9     3     4     7
+6     2     2     2     3     5     4     2     3     3     9     6     4
+    3     2     2     7     5     2     6     2     2     3     5     2     2
+3     5     3     4     0     3     6     2     3     5     6     2     4
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00057                                  \{
+00058   \textcolor{keywordtype}{int}* lower\_letter\_histogram;
+00059   \textcolor{keywordtype}{int}* upper\_letter\_histogram;
+00060 
+00061   lower\_letter\_histogram = (\textcolor{keywordtype}{int}*)malloc(26 * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));
+00062   upper\_letter\_histogram = (\textcolor{keywordtype}{int}*)malloc(26 * \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));
+00063   \textcolor{keywordflow}{if} (lower\_letter\_histogram == NULL || upper\_letter\_histogram == NULL) \{
+00064     printf(\textcolor{stringliteral}{"can't alloc memory\(\backslash\)n"});
+00065     exit(0);
+00066   \}
+00067 
+00068   \textcolor{keywordtype}{char} c;
+00069   \textcolor{keywordflow}{while} ((c = getchar()) != EOF) \{  \textcolor{comment}{// EOF is the end of stdin}
+00070     \textcolor{keywordflow}{if} (isupper(c)) \{
+00071       upper\_letter\_histogram[c -= \textcolor{charliteral}{'A'}]++;
+00072       \textcolor{comment}{// 大文字ヒストグラム用のコードを書いてください}
+00073     \}
+00074     \textcolor{keywordflow}{if} (islower(c)) \{
+00075       lower\_letter\_histogram[c -= \textcolor{charliteral}{'a'}]++;
+00076       \textcolor{comment}{// 小文字ヒストグラム用のコードを書いてください}
+00077     \}
+00078   \}
+00079 
+00080   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 26; i++) \{
+00081     printf(\textcolor{stringliteral}{"%5d "}, upper\_letter\_histogram[i]);
+00082   \}
+00083   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00084   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 26; i++) \{
+00085     printf(\textcolor{stringliteral}{"%5d "}, lower\_letter\_histogram[i]);
+00086   \}
+00087   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00088 
+00089   free(lower\_letter\_histogram);
+00090   free(upper\_letter\_histogram);
+00091 
+00092   \textcolor{keywordflow}{return} 0;
+00093 \}
+\end{DoxyCode}

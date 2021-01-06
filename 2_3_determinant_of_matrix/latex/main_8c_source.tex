@@ -1,0 +1,85 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  2次元（または3次元）行列の行列式を計算する}
+00003 \textcolor{comment}{ *   @date   2016/10/26}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(void)}
+00011 \textcolor{comment}{ *  @brief  2次元（または3次元）行列の行列式を計算する}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  入力：}
+00014 \textcolor{comment}{ *  - 標準入力には，まず行列が2次元か3次元かを区別する整数が与えられる．}
+00015 \textcolor{comment}{ *    2次元なら2，3次元なら3．}
+00016 \textcolor{comment}{ *}
+00017 \textcolor{comment}{もしそれ以外の数値が与えられたら，プログラムは何も表示せずに終了する（return}
+00018 \textcolor{comment}{0で）．}
+00019 \textcolor{comment}{ *  - それに引き続いて，2次元行列の要素}
+00020 \textcolor{comment}{ *    (\(\backslash\)f$ a\_\{11\},a\_\{12\},a\_\{21\},a\_\{22\} \(\backslash\)f$)}
+00021 \textcolor{comment}{ *    または3次元行列の要素}
+00022 \textcolor{comment}{ *    (\(\backslash\)f$ a\_\{11\},a\_\{12\},a\_\{13\},a\_\{21\},a\_\{22\},a\_\{23\},a\_\{31\},a\_\{32\},a\_\{33\}\(\backslash\)f$)}
+00023 \textcolor{comment}{ *    がこの順番で与えられる．}
+00024 \textcolor{comment}{ *    値は実数．}
+00025 \textcolor{comment}{ *}
+00026 \textcolor{comment}{ *  出力：}
+00027 \textcolor{comment}{ *  - 与えられた行列の行列式を計算し，それを標準出力に表示する．}
+00028 \textcolor{comment}{ *  - 数値は小数点第5位まで表示する（%.5f）．}
+00029 \textcolor{comment}{ *}
+00030 \textcolor{comment}{ *  入力例：}
+00031 \textcolor{comment}{\(\backslash\)verbatim}
+00032 \textcolor{comment}{2}
+00033 \textcolor{comment}{0.933942777791 0.402727471670}
+00034 \textcolor{comment}{0.181429362962 0.264556070201}
+00035 \textcolor{comment}{\(\backslash\)endverbatim}
+00036 \textcolor{comment}{  *  出力例：}
+00037 \textcolor{comment}{\(\backslash\)verbatim}
+00038 \textcolor{comment}{0.17401}
+00039 \textcolor{comment}{\(\backslash\)endverbatim}
+00040 \textcolor{comment}{  *  入力例：}
+00041 \textcolor{comment}{\(\backslash\)verbatim}
+00042 \textcolor{comment}{3}
+00043 \textcolor{comment}{0.638833848053 0.0150411981842 0.402224237664}
+00044 \textcolor{comment}{0.911355582360 0.8907163041810 0.419912154151}
+00045 \textcolor{comment}{0.383181998496 0.2191199720820 0.678895763639}
+00046 \textcolor{comment}{\(\backslash\)endverbatim}
+00047 \textcolor{comment}{  *  出力例：}
+00048 \textcolor{comment}{\(\backslash\)verbatim}
+00049 \textcolor{comment}{0.26368}
+00050 \textcolor{comment}{\(\backslash\)endverbatim}
+00051 \textcolor{comment}{ *  @date   2016/10/26}
+00052 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00053 \textcolor{comment}{ */}
+00054 
+00055 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00056   \textcolor{keywordtype}{int} n;
+00057   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00058   \textcolor{keywordflow}{if} (n == 2 || n == 3) \{
+00059     \textcolor{keywordtype}{float} A[n][n];  \textcolor{comment}{// matrix A}
+00060 
+00061     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00062       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < n; j++) \{
+00063         scanf(\textcolor{stringliteral}{"%f"}, &A[i][j]);
+00064       \}
+00065     \}
+00066 
+00067     \textcolor{keywordtype}{float} det;
+00068     \textcolor{keywordflow}{if} (n == 2) \{
+00069       det = A[0][0] * A[1][1] - A[1][0] * A[0][1];  \textcolor{comment}{// a\_11 a\_22 - a\_21 a\_12}
+00070     \} \textcolor{keywordflow}{else} \{
+00071       \textcolor{comment}{// n == 3の場合のコードをここに書いてください}
+00072       det = A[0][0] * A[1][1] * A[2][2] - A[0][2] * A[1][1] * A[2][0] -
+00073             A[1][0] * A[0][1] * A[2][2] + A[1][0] * A[2][1] * A[0][2] +
+00074             A[0][1] * A[1][2] * A[2][0] - A[0][0] * A[1][2] * A[2][1];
+00075     \}
+00076     printf(\textcolor{stringliteral}{"%.5f\(\backslash\)n"}, det);
+00077   \} \textcolor{keywordflow}{else} \{
+00078     printf(\textcolor{stringliteral}{""});
+00079   \}
+00080   \textcolor{keywordflow}{return} 0;
+00081 \}
+\end{DoxyCode}

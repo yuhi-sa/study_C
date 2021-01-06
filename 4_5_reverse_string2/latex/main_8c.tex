@@ -1,0 +1,101 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+回文の判定  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 回文の判定 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+回文の判定 \begin{DoxyDate}{日付}
+2016/11/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+回文の判定 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力から（空白を含まない99文字以下の）文字列が与えられる．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 入力された文字列が回文かどうかを判定し， 回文であれば1，そうでなければ0を表示する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}fXZytlQelzKvXtcMBnttYvkZZkvYttnBMctXvKzleQltyZXf
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}sEFRvHhmWTQDnVLfMOChpDLRTetJdzrhMNEcmhmcENMRrzdJteTRLDphCOMfLVnDQTWmhHvRFEs
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛,B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00039                \{
+00040   \textcolor{keywordtype}{int} len = 100;
+00041   \textcolor{keywordtype}{char} input[100];
+00042   scanf(\textcolor{stringliteral}{"%99s"}, input);
+00043 
+00044   \textcolor{keywordtype}{int} n = 0;
+00045   \textcolor{keywordtype}{int} i = 0;
+00046   \textcolor{keywordflow}{for} (i = 0; i < len; i++) \{
+00047     \textcolor{keywordflow}{if} (input[i] != \textcolor{charliteral}{'\(\backslash\)0'})
+00048       n++;
+00049     \textcolor{keywordflow}{else}
+00050       \textcolor{keywordflow}{break};
+00051   \}
+00052 
+00053   \textcolor{keywordtype}{int} m = 1;
+00054 
+00055   \textcolor{keywordflow}{for} (i = 0; i <= n / 2; i++) \{
+00056     \textcolor{keywordflow}{if} (input[i] == input[n - i - 1])
+00057       m = 1;
+00058     \textcolor{keywordflow}{else} \{
+00059       m = 0;
+00060       \textcolor{keywordflow}{break};
+00061     \}
+00062   \}
+00063   printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, m);
+00064 
+00065   \textcolor{keywordflow}{return} 0;
+00066 \}
+\end{DoxyCode}

@@ -1,0 +1,83 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+2つの整数の和を表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+2つの整数の和を表示する \begin{DoxyDate}{日付}
+2016/10/13 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+2つの整数の和を表示する
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力に2つの整数が与えられる
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 2個の整数の和を表示する
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}1 2
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}3
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}4 8
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}12
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/13 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00038                \{
+00039 
+00040   \textcolor{keywordtype}{int} number1, number2;
+00041   scanf(\textcolor{stringliteral}{"%d"}, &number1);
+00042   scanf(\textcolor{stringliteral}{"%d"}, &number2);
+00043 
+00044   \textcolor{keywordtype}{int} number3 = number1 + number2;
+00045 
+00046   printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, number3); \textcolor{comment}{// これをnumber3にする}
+00047 
+00048   \textcolor{keywordflow}{return} 0;
+00049 \}
+\end{DoxyCode}

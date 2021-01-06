@@ -1,0 +1,185 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+再帰関数を計算する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a759ae4b46839ee501ae5facb85046926}{Fibonacci} (int n)
+\begin{DoxyCompactList}\small\item\em nについてのフィボナッチ数を計算する \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a5127a26373d94a3e3d4c46eca1e20cb7}{factorial} (int a)
+\begin{DoxyCompactList}\small\item\em nの階乗を計算する \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 再帰関数を計算する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+再帰関数を計算する \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!factorial@{factorial}}
+\index{factorial@{factorial}!main.c@{main.\-c}}
+\paragraph[{factorial}]{\setlength{\rightskip}{0pt plus 5cm}int factorial (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{main_8c_a5127a26373d94a3e3d4c46eca1e20cb7}
+
+
+nの階乗を計算する 
+
+
+\begin{DoxyParams}{引数}
+{\em n} & 正の整数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+nの階乗 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00036                      \{
+00037   \textcolor{keywordtype}{int} m;
+00038   \textcolor{keywordtype}{int} f3 = 1;
+00039 
+00040   \textcolor{keywordflow}{for} (m = 1; m <= n; ++m) \{
+00041     f3 = f3 * m;
+00042   \}
+00043 
+00044   \textcolor{keywordflow}{return} f3;
+00045 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!Fibonacci@{Fibonacci}}
+\index{Fibonacci@{Fibonacci}!main.c@{main.\-c}}
+\paragraph[{Fibonacci}]{\setlength{\rightskip}{0pt plus 5cm}int Fibonacci (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{main_8c_a759ae4b46839ee501ae5facb85046926}
+
+
+nについてのフィボナッチ数を計算する 
+
+フィボナッチ数 $ F_n $は漸化式 $ F_n = F_{n-1} + F_{n-2} $で定義される． ただし $ F_1 = F_2 = 1 $．
+
+
+\begin{DoxyParams}{引数}
+{\em n} & 正の整数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+フィボナッチ数(n) 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00014                      \{
+00015   \textcolor{keywordtype}{int} i;
+00016   \textcolor{keywordtype}{int} f0 = 0;
+00017   \textcolor{keywordtype}{int} f1 = 1;
+00018   \textcolor{keywordtype}{int} f2 = 1;
+00019 
+00020   \textcolor{keywordflow}{for} (i = 1; i < n; i++) \{
+00021     f2 = f1 + f0;
+00022     f0 = f1;
+00023     f1 = f2;
+00024   \}
+00025 
+00026   \textcolor{keywordflow}{return} f2;
+00027 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+再帰関数を計算する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，正の整数が1つ与えられる．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた整数nのフィボナッチ数と階乗を計算する 関数を呼び出し， この順番で標準出力に表示する．
+\item 数値と数値の間には空白を1ついれる
+\item 実数xが正の整数ではない場合， \begin{DoxyVerb}Error: the number must be positive
+\end{DoxyVerb}
+ というエラーを表示し，（return 0で）終了する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}5
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}5 120
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}-2
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}Error: the number must be positive
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00049                \{
+00050   \textcolor{keywordtype}{int} n;
+00051   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00052 
+00053   \textcolor{keywordflow}{if} (n > 0) \{
+00054     printf(\textcolor{stringliteral}{"%d "}, Fibonacci(n));
+00055     printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, factorial(n));
+00056 
+00057   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (n <= 0) \{
+00058     printf(\textcolor{stringliteral}{"Error: the number must be positive"});
+00059     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00060   \}
+00061   \textcolor{keywordflow}{return} 0;
+00062 \}
+\end{DoxyCode}

@@ -1,0 +1,91 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+n個の実数の和を表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em n個の実数の和を表示する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+n個の実数の和を表示する \begin{DoxyDate}{日付}
+2016/10/17 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+n個の実数の和を表示する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初は実数の個数n（正の整数)
+\item それに引き続いてn個の実数が与えられる
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item n個の整数の和を（小数点第1位まで）表示する
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}10 0.17092690844 0.269405693204 0.272729853937 0.83502923788 0.539916669772
+0.186507679728 0.660337164448 0.335226340127 0.440513411122 0.75002980058
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}4.5
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}6 0.344080271438 0.462451151037 0.76436728616 0.592085694456 0.145033025297
+0.167567732804
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}2.5
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/17 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00041                \{
+00042   \textcolor{keywordtype}{int} n;
+00043   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00044 
+00045   \textcolor{keywordtype}{float} sum = 0;
+00046   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= n; i++) \{
+00047     \textcolor{keywordtype}{float} number;
+00048     scanf(\textcolor{stringliteral}{"%f"}, &number);
+00049     sum += number;
+00050   \}
+00051 
+00052   printf(\textcolor{stringliteral}{"%.1f\(\backslash\)n"}, sum);  \textcolor{comment}{// 小数点第1位まで表示させる}
+00053 
+00054   \textcolor{keywordflow}{return} 0;
+00055 \}
+\end{DoxyCode}

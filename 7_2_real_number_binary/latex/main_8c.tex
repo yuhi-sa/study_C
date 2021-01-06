@@ -1,0 +1,137 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+実数の2進数表示  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 実数の2進数表示 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+実数の2進数表示 \begin{DoxyDate}{日付}
+2017/1/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+実数の2進数表示 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力に10進数の実数が1つ与えられる（255〜-\/255まで）
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた実数の2進数を表示する．
+\item 整数部・実数部ともに2進数8桁（0で埋める）．2の補数表現は使用しない．
+\item 先頭に符号をつける（負の場合のみ）
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}16
+  *  出力例：
+\verbatim
+00010000.00000000
+\end{DoxyVerb}
+ \begin{DoxyVerb}26.1875
+  *  出力例：
+\verbatim
+00011010.00110000
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}-26.1875
+  *  出力例：
+\verbatim
+-00011010.00110000
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}-127.99609375
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}-01111111.11111111
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2017/1/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00057                \{
+00058   \textcolor{keywordtype}{float} f;
+00059   \textcolor{keywordtype}{float} seisuu;
+00060   \textcolor{keywordtype}{float} syousuu;
+00061 
+00062   scanf(\textcolor{stringliteral}{"%f"}, &f);
+00063 
+00064   syousuu = modff(f, &seisuu);
+00065 
+00066   \textcolor{keywordflow}{if} (seisuu < 0) \{
+00067     seisuu = 0 - seisuu;
+00068     syousuu = 0 - syousuu;
+00069     printf(\textcolor{stringliteral}{"-"});
+00070   \}
+00071 
+00072   \textcolor{keywordtype}{int} i;
+00073   \textcolor{keywordtype}{int} x = (int)seisuu;
+00074   \textcolor{keywordtype}{int} a[40];
+00075   \textcolor{keywordflow}{for} (i = 0; 8 > i; i++) \{
+00076     a[i] = x % 2;
+00077     x = x / 2;
+00078   \}
+00079   \textcolor{keywordflow}{while} (i > 0) \{
+00080     printf(\textcolor{stringliteral}{"%d"}, a[--i]);
+00081   \}
+00082   printf(\textcolor{stringliteral}{"."});
+00083 
+00084   \textcolor{keywordtype}{int} c[9];
+00085   \textcolor{keywordtype}{int} m, l, j;
+00086 
+00087   \textcolor{keywordflow}{for} (l = 0; syousuu > 0; l++) \{
+00088     m = (int)(syousuu / 0.5);
+00089 
+00090     syousuu = syousuu / 0.5 - (float)m;
+00091 
+00092     c[l] = m + 0;
+00093 
+00094     \textcolor{keywordflow}{if} (l > 7)
+00095       \textcolor{keywordflow}{break};
+00096   \}
+00097 
+00098   \textcolor{keywordflow}{for} (j = 0; j < l; j++) 
+00099   \{
+00100     printf(\textcolor{stringliteral}{"%d"}, c[j]);
+00101   \}
+00102   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00103 
+00104   \textcolor{keywordflow}{return} 0;
+00105 \}
+\end{DoxyCode}

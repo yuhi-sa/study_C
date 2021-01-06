@@ -1,0 +1,135 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+配列の平均の計算  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{main_8c_a65d907ddbef333f45d6a26c960a095f0}{average} (float x\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em 配列の平均を計算する \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 配列の平均の計算 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+配列の平均の計算 \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!average@{average}}
+\index{average@{average}!main.c@{main.\-c}}
+\paragraph[{average}]{\setlength{\rightskip}{0pt plus 5cm}float average (
+\begin{DoxyParamCaption}
+\item[{float}]{x\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{main_8c_a65d907ddbef333f45d6a26c960a095f0}
+
+
+配列の平均を計算する 
+
+
+\begin{DoxyParams}{引数}
+{\em n} & 配列xの要素数(n$>$=1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+配列の平均値 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00009                                 \{
+00010   \textcolor{keywordtype}{float} a = 0;
+00011   \textcolor{keywordtype}{int} i;
+00012 
+00013   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{
+00014     a += x[i];
+00015   \}
+00016 
+00017   \textcolor{keywordflow}{return} a / n;
+00018 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+配列の平均の計算 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初の整数はn（nは1以上の整数）
+\item それに引き続くn個の実数はベクトルxの要素 ( $x = (x_1, x_2, \ldots, x_n) $)
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item x\-\_\-iの平均を計算する関数averageを呼び出し，出力する．
+\item 数値は小数点第5位まで表示する（\%.5f）
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}4 0.185748966526 0.32415795911 0.825689568236 0.371623309603
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.42680
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}2 0.808179641113 0.322645787577
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.56541
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00043                \{
+00044   \textcolor{keywordtype}{int} length;
+00045   scanf(\textcolor{stringliteral}{"%d"}, &length);
+00046 
+00047   \textcolor{keywordtype}{float} x[length];
+00048   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < length; i++) \{
+00049     \textcolor{keywordtype}{float} element;
+00050     scanf(\textcolor{stringliteral}{"%f"}, &element);
+00051     x[i] = element;
+00052   \}
+00053 
+00054   printf(\textcolor{stringliteral}{"%.5f\(\backslash\)n"}, average(x, length));
+00055 
+00056   \textcolor{keywordflow}{return} 0;
+00057 \}
+\end{DoxyCode}

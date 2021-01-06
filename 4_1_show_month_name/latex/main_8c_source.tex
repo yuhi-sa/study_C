@@ -1,0 +1,100 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  月の英語名を表示する}
+00003 \textcolor{comment}{ *   @date   2016/11/24}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{preprocessor}{#include <stdlib.h>}   \textcolor{comment}{// atoi()}
+00010 \textcolor{preprocessor}{#include <stdbool.h>}  \textcolor{comment}{// bool}
+00011 \textcolor{comment}{}
+00012 \textcolor{comment}{/** @fn     void show\_month\_name(char *month)}
+00013 \textcolor{comment}{ *  @brief  文字列monthをprintfで表示する}
+00014 \textcolor{comment}{ *  @param  month 表示する文字列}
+00015 \textcolor{comment}{ *  @date   2016/06/08}
+00016 \textcolor{comment}{ *  @author Toru Tamaki}
+00017 \textcolor{comment}{ */}
+00018 \textcolor{keywordtype}{void} show_month_name(\textcolor{keywordtype}{char}* month) \{
+00019   printf(\textcolor{stringliteral}{"%s\(\backslash\)n"}, month);
+00020 \}
+00021 \textcolor{comment}{}
+00022 \textcolor{comment}{/** @fn int main(void)}
+00023 \textcolor{comment}{ *  @brief 月の英語名を表示する}
+00024 \textcolor{comment}{ *}
+00025 \textcolor{comment}{ *  入力：}
+00026 \textcolor{comment}{ *  - 標準入力から，1から12までの数字が与えられる}
+00027 \textcolor{comment}{ *  - 数字が複数与えられる場合，空白で区切られている．}
+00028 \textcolor{comment}{ *}
+00029 \textcolor{comment}{ *  出力：}
+00030 \textcolor{comment}{ *  - 与えられた数字に対応する月の名前を表示する（表示後は改行する）．}
+00031 \textcolor{comment}{ *  - 数字が複数与えられている場合，上記の処理を繰り返す．}
+00032 \textcolor{comment}{ *  - 1から12までの数字ではないものが入力された場合，その時点で終了する．}
+00033 \textcolor{comment}{ *}
+00034 \textcolor{comment}{ *  入力例：}
+00035 \textcolor{comment}{\(\backslash\)verbatim}
+00036 \textcolor{comment}{1 2 5}
+00037 \textcolor{comment}{\(\backslash\)endverbatim}
+00038 \textcolor{comment}{  *  出力例：}
+00039 \textcolor{comment}{\(\backslash\)verbatim}
+00040 \textcolor{comment}{January}
+00041 \textcolor{comment}{February}
+00042 \textcolor{comment}{May}
+00043 \textcolor{comment}{\(\backslash\)endverbatim}
+00044 \textcolor{comment}{  *  入力例：}
+00045 \textcolor{comment}{\(\backslash\)verbatim}
+00046 \textcolor{comment}{1 2 12 55 1}
+00047 \textcolor{comment}{\(\backslash\)endverbatim}
+00048 \textcolor{comment}{  *  出力例：}
+00049 \textcolor{comment}{\(\backslash\)verbatim}
+00050 \textcolor{comment}{January}
+00051 \textcolor{comment}{February}
+00052 \textcolor{comment}{December}
+00053 \textcolor{comment}{\(\backslash\)endverbatim}
+00054 \textcolor{comment}{ *  @date   2016/10/02}
+00055 \textcolor{comment}{ *  @author 自分の名前，学生番号}
+00056 \textcolor{comment}{ */}
+00057 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00058   \textcolor{keywordtype}{char}* year[] = \{\textcolor{stringliteral}{"January"},
+00059                   \textcolor{stringliteral}{"February"},
+00060                   \textcolor{stringliteral}{"March"},
+00061                   \textcolor{stringliteral}{"April"},
+00062                   \textcolor{stringliteral}{"May"},
+00063                   \textcolor{stringliteral}{"June"},
+00064                   \textcolor{stringliteral}{"July"},
+00065                   \textcolor{stringliteral}{"August"},
+00066                   \textcolor{stringliteral}{"September"},
+00067                   \textcolor{stringliteral}{"October"},
+00068                   \textcolor{stringliteral}{"November"},
+00069                   \textcolor{stringliteral}{"December"}\};
+00070 
+00071   \textcolor{keywordtype}{int} len = 100;
+00072   \textcolor{keywordtype}{char} command[100];
+00073   \textcolor{keywordtype}{bool} is\_end = \textcolor{keyword}{false};
+00074 
+00075   \textcolor{keywordflow}{while} (!is\_end) \{
+00076     \textcolor{keywordtype}{int} return\_value = scanf(\textcolor{stringliteral}{"%99s"}, command);
+00077 
+00078     \textcolor{keywordflow}{if} (return\_value == 0 ||    \textcolor{comment}{// if input didn't match to %s}
+00079         return\_value == EOF) \{  \textcolor{comment}{// if there are no input}
+00080       \textcolor{keywordflow}{break};
+00081     \}
+00082 
+00083     \textcolor{keywordtype}{int} n = atoi(command);  \textcolor{comment}{// conversion from string to int}
+00084 
+00085     \textcolor{keywordflow}{if} (1 <= n && n <= 12) \{
+00086       printf(\textcolor{stringliteral}{"%s\(\backslash\)n"}, year[n - 1]);
+00087 
+00088       \textcolor{comment}{// ここで show\_month\_nameを呼び出してください}
+00089 
+00090     \} \textcolor{keywordflow}{else} \{
+00091       is\_end = \textcolor{keyword}{true};
+00092     \}
+00093   \}
+00094 
+00095   \textcolor{keywordflow}{return} 0;
+00096 \}
+\end{DoxyCode}

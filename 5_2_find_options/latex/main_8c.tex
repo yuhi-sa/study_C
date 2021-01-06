@@ -1,0 +1,111 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+コマンドラインオプションを判定する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em コマンドラインオプションを判定する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+コマンドラインオプションを判定する \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+コマンドラインオプションを判定する 
+
+入力：
+\begin{DoxyItemize}
+\item コマンドライン引数にオプションが与えられる（オプションは0個以上）． オプションは-\/から始まる文字列で，以下の4種類がある． -\/help, -\/version, -\/test, -\/search
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられたオプションの文字列（-\/を除く）を，\char`\"{}option \char`\"{}の後に表示し，改行する
+\item コマンドライン引数にオプションが与えられなければ，何も表示しない
+\item 4種類のオプション以外が与えられても，何もしない
+\item 上記を与えられたオプション全てに対して実行する
+\end{DoxyItemize}
+
+実行例： \begin{DoxyVerb}./main -search -search -help -help
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}option search
+option search
+option help
+option help
+\end{DoxyVerb}
+ 実行例： \begin{DoxyVerb}./main -punch -search -version
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}option search
+option version
+\end{DoxyVerb}
+ 実行例： \begin{DoxyVerb}./main
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00055                                  \{
+00056   \textcolor{keywordtype}{int} i = 1;
+00057   argc--;
+00058 
+00059   \textcolor{keywordflow}{while} (argc > 0) \{
+00060     \textcolor{keywordflow}{if} (\textcolor{charliteral}{'-'} == argv[i][0]) \{
+00061       \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"help"}, &argv[i][1], 10) == 0) \{
+00062         printf(\textcolor{stringliteral}{"option help\(\backslash\)n"});
+00063       \}
+00064       \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"search"}, &argv[i][1], 10) == 0) \{
+00065         printf(\textcolor{stringliteral}{"option search\(\backslash\)n"});
+00066       \}
+00067       \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"version"}, &argv[i][1], 10) == 0) \{
+00068         printf(\textcolor{stringliteral}{"option version\(\backslash\)n"});
+00069       \}
+00070       \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"test"}, &argv[i][1], 10) == 0) \{
+00071         printf(\textcolor{stringliteral}{"option test\(\backslash\)n"});
+00072       \}
+00073     \}
+00074 
+00075     i++;
+00076     argc--;
+00077   \}
+00078 
+00079   \textcolor{keywordflow}{return} 0;
+00080 \}
+\end{DoxyCode}

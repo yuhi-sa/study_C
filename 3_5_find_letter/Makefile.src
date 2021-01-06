@@ -1,0 +1,2 @@
+SRC += functions.c
+SRC_CORRECT += functions_correct.c

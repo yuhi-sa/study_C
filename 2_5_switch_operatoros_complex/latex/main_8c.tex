@@ -1,0 +1,116 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+2個の複素数を標準入力から読み込み，その演算結果を表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 2個の複素数を標準入力から読み込み，その演算結果を表示する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+2個の複素数を標準入力から読み込み，その演算結果を表示する \begin{DoxyDate}{日付}
+2016/10/27 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+2個の複素数を標準入力から読み込み，その演算結果を表示する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初は演算子を表す文字，+, -\/, $\ast$, / のいずれか． これ以外の文字が与えられたら， \begin{DoxyVerb}Error: unknown operator
+\end{DoxyVerb}
+ というエラーを表示し，（return 0で）終了する．
+\item それに引き続く4個の実数は，演算子を適用する複素数z1とz2の実部と虚部が Re(z1) Im(z1) Re(z2) Im(z2) の順で与えられる
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 2個の複素数に演算を適用した結果の複素数を表示する
+\item 実部，虚部ともに数点第5位まで表示する（\%.5f）
+\item a+bjの形式で表示する． aは実部，bは虚部．ただしbが負の場合にはa-\/bjと出力する
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}/ 0.183514370734 0.721236372839 0.00169904140328 0.161001208126
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}4.49122-1.09244j
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}- 0.270864483478 0.847355883465 0.213440078194 0.417426165812
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.05742+0.42993j
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/27 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00048                \{
+00049   \textcolor{keywordtype}{char} a;
+00050   \textcolor{keywordtype}{float} Re[3];
+00051   \textcolor{keywordtype}{float} Im[3];
+00052 
+00053   scanf(\textcolor{stringliteral}{"%c"}, &a);
+00054   scanf(\textcolor{stringliteral}{"%f"}, &Re[0]);
+00055   scanf(\textcolor{stringliteral}{"%f"}, &Im[0]);
+00056   scanf(\textcolor{stringliteral}{"%f"}, &Re[1]);
+00057   scanf(\textcolor{stringliteral}{"%f"}, &Im[1]);
+00058 
+00059   \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'+'}) \{
+00060     Re[2] = Re[0] + Re[1];
+00061     Im[2] = Im[0] + Im[1];
+00062   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'-'}) \{
+00063     Re[2] = Re[0] - Re[1];
+00064     Im[2] = Im[0] - Im[1];
+00065   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'*'}) \{
+00066     Re[2] = Re[0] * Re[1] - Im[0] * Im[1];
+00067     Im[2] = Re[0] * Im[1] + Re[1] * Im[0];
+00068   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'/'}) \{
+00069     Re[2] = ((Re[0] * Re[1]) + (Im[0] * Im[1])) /
+00070             ((Re[1] * Re[1]) + (Im[1] * Im[1]));
+00071     Im[2] = ((Im[0] * Re[1]) - (Re[0] * Im[1])) /
+00072             ((Re[1] * Re[1]) + (Im[1] * Im[1]));
+00073   \}
+00074 
+00075   \textcolor{keywordflow}{if} (Im[2] > 0) \{
+00076     printf(\textcolor{stringliteral}{"%.5f+%.5fj"}, Re[2], Im[2]);
+00077     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00078   \}
+00079   \textcolor{keywordflow}{if} (Im[2] < 0) \{
+00080     printf(\textcolor{stringliteral}{"%.5f%.5fj"}, Re[2], Im[2]);
+00081     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00082   \}
+00083 
+00084   \textcolor{keywordflow}{return} 0;
+00085 \}
+\end{DoxyCode}

@@ -1,0 +1,117 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+文字列中の，指定文字，空白，改行の個数を判定する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 文字列中の，指定文字，空白，改行の個数を判定する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+文字列中の，指定文字，空白，改行の個数を判定する \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+文字列中の，指定文字，空白，改行の個数を判定する 
+
+入力：
+\begin{DoxyItemize}
+\item コマンドライン引数に検索するべき文字xが1つ与えられる
+\item 標準入力には検索対象の，空白と改行を含む文字列が与えられる． 長さは不明．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 文字列に含まれる文字x，空白，改行の個数をこの順番に（dで）表示する．
+\item コマンドライン引数にxが与えられなければ，何も表示せずに終了する（return 0で）． \begin{DoxyVerb}実行例：
+\end{DoxyVerb}
+ \begin{DoxyVerb}./main g
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}HrPY cVU vY SlY px id GcW uRwtjN
+FsZ wI sDfLXbmZZ
+ITkdflQCR DVLDv ab msBDDjHv qBxyp NtCmV
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0 14 3
+\end{DoxyVerb}
+ 実行例： \begin{DoxyVerb}./main X
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}iuu AOpwGMlb
+BeaWBqs CtDucG wWSgAw KnO BkuALSut EhSHco
+XCud FoAAxxQ hHxggrgVu HGGj rUtc GyA NGcnDEoz ZcSD KBMoinMVR
+vbdC wtKJermD xr YJVJAEY SBpIrJCbn avrQynkvJ MMDcXf cAYrgj
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}2 21 4
+\end{DoxyVerb}
+ 実行例： \begin{DoxyVerb}./main
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}BeaWBqs CtDucG wWSgAw KnO BkuALSut EhSHco
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+\end{DoxyItemize}
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00067                                  \{
+00068   \textcolor{keywordtype}{int} i = 0;
+00069   \textcolor{keywordtype}{char} a = argv[2];
+00070   \textcolor{keywordflow}{if} (argc <= 1) \{
+00071     \textcolor{keywordflow}{return} 0;
+00072   \}
+00073   \textcolor{keywordtype}{char} letter = argv[1][0];
+00074 
+00075   \textcolor{keywordtype}{int} count\_linebreak = 0;
+00076   \textcolor{keywordtype}{int} count\_number = 0;
+00077   \textcolor{keywordtype}{int} count\_space = 0;
+00078   \textcolor{keywordtype}{char} c;
+00079 
+00080   \textcolor{keywordflow}{while} ((c = getchar()) != EOF) \{  \textcolor{comment}{// EOF is the end of stdin}
+00081     \textcolor{keywordflow}{if} (letter == c) \{
+00082       count\_number++;
+00083     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\textcolor{charliteral}{' '} == c) \{
+00084       count\_space++;
+00085     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\textcolor{charliteral}{'\(\backslash\)n'} == c) \{
+00086       count\_linebreak++;
+00087     \}
+00088   \}
+00089 
+00090   printf(\textcolor{stringliteral}{"%d %d %d\(\backslash\)n"}, count\_number, count\_space, count\_linebreak);
+00091 
+00092   \textcolor{keywordflow}{return} 0;
+00093 \}
+\end{DoxyCode}

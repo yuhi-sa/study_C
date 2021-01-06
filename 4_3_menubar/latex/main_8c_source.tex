@@ -1,0 +1,150 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  メニュー項目を表示する}
+00003 \textcolor{comment}{ *   @date   2016/11/24}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{preprocessor}{#include <stdbool.h>}  \textcolor{comment}{// bool}
+00010 \textcolor{comment}{}
+00011 \textcolor{comment}{/** @fn     void show\_items(char *items[], int n)}
+00012 \textcolor{comment}{ *  @brief  メニュー項目を表示する}
+00013 \textcolor{comment}{ *  @param  items メニュー項目}
+00014 \textcolor{comment}{ *  @param  n 項目数}
+00015 \textcolor{comment}{ *  @date   2016/06/08}
+00016 \textcolor{comment}{ *  @author Toru Tamaki}
+00017 \textcolor{comment}{ */}
+00018 \textcolor{keywordtype}{void} show_items(\textcolor{keywordtype}{char}* items[], \textcolor{keywordtype}{int} n) \{
+00019   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= n; i++) \{
+00020     printf(\textcolor{stringliteral}{"%s "}, items[i]);
+00021   \}
+00022   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00023 \}
+00024 \textcolor{comment}{}
+00025 \textcolor{comment}{/** @fn     show\_menu(char **menu[], int n)}
+00026 \textcolor{comment}{ *  @brief  メニューを表示する}
+00027 \textcolor{comment}{ *  @param  menu メニュー}
+00028 \textcolor{comment}{ *  @param  n メニュー数}
+00029 \textcolor{comment}{ *  @date   2016/06/08}
+00030 \textcolor{comment}{ *  @author Toru Tamaki}
+00031 \textcolor{comment}{ */}
+00032 \textcolor{keywordtype}{void} show_menu(\textcolor{keywordtype}{char}** menu[], \textcolor{keywordtype}{int} n) \{
+00033   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00034     printf(\textcolor{stringliteral}{"%s "}, menu[i][0]);
+00035   \}
+00036   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00037 \}
+00038 \textcolor{comment}{}
+00039 \textcolor{comment}{/** @fn int main(void)}
+00040 \textcolor{comment}{ *  @brief メニュー項目を表示する}
+00041 \textcolor{comment}{ *}
+00042 \textcolor{comment}{ *  入力：}
+00043 \textcolor{comment}{ *  - 標準入力から，メニュー項目を表すアルファベット1文字が与えられる}
+00044 \textcolor{comment}{ *  - もしくは終了(quit)を意味する'q'が与えられる}
+00045 \textcolor{comment}{ *  - 文字が複数与えられる場合，空白（もしくは改行）で区切られている}
+00046 \textcolor{comment}{ *}
+00047 \textcolor{comment}{ *  出力：}
+00048 \textcolor{comment}{ *  - メニューmenuを表示する}
+00049 \textcolor{comment}{ *  -}
+00050 \textcolor{comment}{そして入力されたアルファベット1文字に対応するメニュー項目の内容を表示する．}
+00051 \textcolor{comment}{ *  - 文字'q'が与えられた場合，終了する．}
+00052 \textcolor{comment}{ *  - それ以外の文字が入力された場合，menu表示に戻る}
+00053 \textcolor{comment}{ *  -}
+00054 \textcolor{comment}{空白（もしくは改行）の後に続けて文字が与えられた場合，上記の処理を繰り返す．}
+00055 \textcolor{comment}{ *}
+00056 \textcolor{comment}{ *  注意：}
+00057 \textcolor{comment}{ *  - メニュー項目 File の場合，先頭の1文字 F が対応するアルファベットである．}
+00058 \textcolor{comment}{ *  - 以下のコードでは4つのメニュー項目が定義されている．}
+00059 \textcolor{comment}{\(\backslash\)verbatim}
+00060 \textcolor{comment}{  char *file[] = \{"File(F)", "open",       "close",    "new",      "quit"\};}
+00061 \textcolor{comment}{  char *edit[] = \{"Edit(E)", "undo",       "paste",    "copy",     "delete"\};}
+00062 \textcolor{comment}{  char *view[] = \{"View(V)", "fullscreen", "minimize", "large",    "small"\};}
+00063 \textcolor{comment}{  char *help[] = \{"Help(H)", "help",       "search",   "document", "website"\};}
+00064 \textcolor{comment}{  char **menu[] = \{file, edit, view, help\};}
+00065 \textcolor{comment}{\(\backslash\)endverbatim}
+00066 \textcolor{comment}{ *}
+00067 \textcolor{comment}{これら以外にもメニューを追加することを考慮して，入力文字がFかEかを判定するというコードを書かず，}
+00068 \textcolor{comment}{ *    一般的なコードを書くこと．}
+00069 \textcolor{comment}{ *}
+00070 \textcolor{comment}{ *  実行例（キーボード入力の場合）：}
+00071 \textcolor{comment}{\(\backslash\)verbatim}
+00072 \textcolor{comment}{$ ./main}
+00073 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00074 \textcolor{comment}{F}
+00075 \textcolor{comment}{open close new quit}
+00076 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00077 \textcolor{comment}{E}
+00078 \textcolor{comment}{undo paste copy delete}
+00079 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00080 \textcolor{comment}{V}
+00081 \textcolor{comment}{fullscreen minimize large small}
+00082 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00083 \textcolor{comment}{H}
+00084 \textcolor{comment}{help search document website}
+00085 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00086 \textcolor{comment}{D}
+00087 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00088 \textcolor{comment}{q}
+00089 \textcolor{comment}{$}
+00090 \textcolor{comment}{\(\backslash\)endverbatim}
+00091 \textcolor{comment}{  *  標準入力例：}
+00092 \textcolor{comment}{\(\backslash\)verbatim}
+00093 \textcolor{comment}{F F E V}
+00094 \textcolor{comment}{\(\backslash\)endverbatim}
+00095 \textcolor{comment}{  *  出力例：}
+00096 \textcolor{comment}{\(\backslash\)verbatim}
+00097 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00098 \textcolor{comment}{open close new quit}
+00099 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00100 \textcolor{comment}{open close new quit}
+00101 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00102 \textcolor{comment}{undo paste copy delete}
+00103 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00104 \textcolor{comment}{fullscreen minimize large small}
+00105 \textcolor{comment}{File(F) Edit(E) View(V) Help(H)}
+00106 \textcolor{comment}{\(\backslash\)endverbatim}
+00107 \textcolor{comment}{ *  @date   2016/11/24}
+00108 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00109 \textcolor{comment}{ */}
+00110 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00111   \textcolor{keywordtype}{char}* file[] = \{\textcolor{stringliteral}{"File(F)"}, \textcolor{stringliteral}{"open"}, \textcolor{stringliteral}{"close"}, \textcolor{stringliteral}{"new"}, \textcolor{stringliteral}{"quit"}\};
+00112   \textcolor{keywordtype}{char}* edit[] = \{\textcolor{stringliteral}{"Edit(E)"}, \textcolor{stringliteral}{"undo"}, \textcolor{stringliteral}{"paste"}, \textcolor{stringliteral}{"copy"}, \textcolor{stringliteral}{"delete"}\};
+00113   \textcolor{keywordtype}{char}* view[] = \{\textcolor{stringliteral}{"View(V)"}, \textcolor{stringliteral}{"fullscreen"}, \textcolor{stringliteral}{"minimize"}, \textcolor{stringliteral}{"large"}, \textcolor{stringliteral}{"small"}\};
+00114   \textcolor{keywordtype}{char}* help[] = \{\textcolor{stringliteral}{"Help(H)"}, \textcolor{stringliteral}{"help"}, \textcolor{stringliteral}{"search"}, \textcolor{stringliteral}{"document"}, \textcolor{stringliteral}{"website"}\};
+00115   \textcolor{keywordtype}{char}** menu[] = \{file, edit, view, help\};
+00116   \textcolor{keywordtype}{int} num\_menu = 4;
+00117 
+00118   \textcolor{keywordtype}{int} len = 100;
+00119   \textcolor{keywordtype}{char} input[100];
+00120   \textcolor{keywordtype}{bool} is\_end = \textcolor{keyword}{false};
+00121 
+00122   \textcolor{keywordflow}{while} (!is\_end) \{
+00123     show_menu(menu, num\_menu);
+00124 
+00125     \textcolor{keywordtype}{int} return\_value = scanf(\textcolor{stringliteral}{"%99s"}, input);
+00126 
+00127     \textcolor{keywordflow}{if} (return\_value == 0 ||    \textcolor{comment}{// if input didn't match to %s}
+00128         return\_value == EOF) \{  \textcolor{comment}{// if there are no input}
+00129       \textcolor{keywordflow}{break};                    \textcolor{comment}{// break while}
+00130     \}
+00131 
+00132     \textcolor{keywordflow}{if} (\textcolor{charliteral}{'q'} == input[0]) \{  \textcolor{comment}{// if input is 'q'}
+00133       \textcolor{keywordflow}{break};                \textcolor{comment}{// break while}
+00134     \}
+00135     \textcolor{comment}{// printf("%c",*(*menu[0]+5));}
+00136     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n = 0; n < num\_menu; n++) \{
+00137       \textcolor{keywordflow}{if} (input[0] == *(*menu[n] + 5)) \{
+00138         show_items(menu[n], 4);
+00139       \}
+00140 
+00141       \textcolor{comment}{// 入力文字がどのメニュー項目に相当するのかを判定し，show\_items()で表示してください}
+00142     \}
+00143   \}
+00144 
+00145   \textcolor{keywordflow}{return} 0;
+00146 \}
+\end{DoxyCode}

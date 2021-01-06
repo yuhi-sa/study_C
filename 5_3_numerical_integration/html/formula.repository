@@ -1,0 +1,1 @@
+\form#0:$ \int_a^b f(x) dx \approx \sum_{i=1}^{n} f(x_i) \frac{b-a}{n} $

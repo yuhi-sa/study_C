@@ -1,0 +1,116 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  矩形近似による数値積分}
+00003 \textcolor{comment}{ *   @date   2016/12/15}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{preprocessor}{#include <stdlib.h>}  \textcolor{comment}{// atoi, atof}
+00010 \textcolor{preprocessor}{#include <math.h>}    \textcolor{comment}{// sin, cos}
+00011 \textcolor{preprocessor}{#include <string.h>}  \textcolor{comment}{// strncmp}
+00012 \textcolor{comment}{}
+00013 \textcolor{comment}{/** @fn double linear(double x)}
+00014 \textcolor{comment}{ *  @brief 1次関数}
+00015 \textcolor{comment}{ */}
+00016 \textcolor{keywordtype}{double} linear(\textcolor{keywordtype}{double} x) \{
+00017   \textcolor{keywordtype}{double} a = 2.0, b = 0.5;
+00018   \textcolor{keywordflow}{return} a * x + b;
+00019 \}\textcolor{comment}{}
+00020 \textcolor{comment}{/** @fn double quad(double x)}
+00021 \textcolor{comment}{ *  @brief 2次関数}
+00022 \textcolor{comment}{ */}
+00023 \textcolor{keywordtype}{double} quad(\textcolor{keywordtype}{double} x) \{
+00024   \textcolor{keywordtype}{double} a = 2.0, b = 0.5, c = 1.0;
+00025   \textcolor{keywordflow}{return} a * x * x + b * x + c;
+00026 \}
+00027 \textcolor{comment}{}
+00028 \textcolor{comment}{/** @fn int main(int argc, char* argv[])}
+00029 \textcolor{comment}{ *  @brief 矩形近似による数値積分}
+00030 \textcolor{comment}{ *}
+00031 \textcolor{comment}{ *  次の近似式による数値積分を行う．}
+00032 \textcolor{comment}{ *  \(\backslash\)f$ \(\backslash\)int\_a^b f(x) dx \(\backslash\)approx \(\backslash\)sum\_\{i=1\}^\{n\} f(x\_i) \(\backslash\)frac\{b-a\}\{n\} \(\backslash\)f$}
+00033 \textcolor{comment}{ *}
+00034 \textcolor{comment}{ *  コマンドラインオプション：}
+00035 \textcolor{comment}{ *  - 1つ目：被積分関数f(x)（linear, quad, sin, conのいずれか）}
+00036 \textcolor{comment}{ *  - 2つ目：a}
+00037 \textcolor{comment}{ *  - 3つ目：b，ただしa < b}
+00038 \textcolor{comment}{ *  - 4つ目：n，ただし0 < n}
+00039 \textcolor{comment}{ *}
+00040 \textcolor{comment}{ *  出力：}
+00041 \textcolor{comment}{ *  - 積分結果を小数点第5位まで表示（%.5f）}
+00042 \textcolor{comment}{ *  - 次の場合は，何も表示せずに終了する（return 0で）．}
+00043 \textcolor{comment}{ *    被積分関数のオプションに上記4つの関数以外を指定した場合．}
+00044 \textcolor{comment}{ *    aがb以上の場合．}
+00045 \textcolor{comment}{ *    nが負の場合．}
+00046 \textcolor{comment}{ *}
+00047 \textcolor{comment}{ *  実行例：}
+00048 \textcolor{comment}{\(\backslash\)verbatim}
+00049 \textcolor{comment}{./main linear 0 10 1000}
+00050 \textcolor{comment}{\(\backslash\)endverbatim}
+00051 \textcolor{comment}{  *  出力例：}
+00052 \textcolor{comment}{\(\backslash\)verbatim}
+00053 \textcolor{comment}{105.10500}
+00054 \textcolor{comment}{\(\backslash\)endverbatim}
+00055 \textcolor{comment}{ *  実行例：}
+00056 \textcolor{comment}{\(\backslash\)verbatim}
+00057 \textcolor{comment}{./main sin 0 10 100000}
+00058 \textcolor{comment}{\(\backslash\)endverbatim}
+00059 \textcolor{comment}{  *  出力例：}
+00060 \textcolor{comment}{\(\backslash\)verbatim}
+00061 \textcolor{comment}{1.83904}
+00062 \textcolor{comment}{\(\backslash\)endverbatim}
+00063 \textcolor{comment}{ *  実行例：}
+00064 \textcolor{comment}{\(\backslash\)verbatim}
+00065 \textcolor{comment}{./main log 0 10 100}
+00066 \textcolor{comment}{\(\backslash\)endverbatim}
+00067 \textcolor{comment}{  *  出力例：}
+00068 \textcolor{comment}{\(\backslash\)verbatim}
+00069 \textcolor{comment}{\(\backslash\)endverbatim}
+00070 \textcolor{comment}{ *  @date   2016/12/15}
+00071 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00072 \textcolor{comment}{ */}
+00073 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[]) \{
+00074   \textcolor{keywordflow}{if} (argc < 5) \{
+00075     \textcolor{keywordflow}{return} 0;
+00076   \}
+00077 
+00078   double (*f)(double);  \textcolor{comment}{// function pointer}
+00079 
+00080   \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"linear"}, argv[1], 10) == 0) \{
+00081     f = linear;
+00082   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"quad"}, argv[1], 10) == 0) \{
+00083     f = quad;
+00084   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"sin"}, argv[1], 10) == 0) \{
+00085     f = sin;
+00086   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"cos"}, argv[1], 10) == 0) \{
+00087     f = cos;
+00088   \} \textcolor{keywordflow}{else} \{
+00089     \textcolor{keywordflow}{return} 0;
+00090   \}
+00091 
+00092   \textcolor{keywordtype}{double} a = atof(argv[2]);
+00093   \textcolor{keywordtype}{double} b = atof(argv[3]);
+00094   \textcolor{keywordflow}{if} (a >= b) \{
+00095     \textcolor{keywordflow}{return} 0;
+00096   \}
+00097   \textcolor{keywordtype}{int} n = atoi(argv[4]);
+00098   \textcolor{keywordflow}{if} (n <= 0) \{
+00099     \textcolor{keywordflow}{return} 0;
+00100   \}
+00101 
+00102   \textcolor{keywordtype}{double} h = (b - a) / n;
+00103   \textcolor{keywordtype}{double} integral = 0.0;
+00104 
+00105   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{double} x = a; x <= b; x += h) \{
+00106     integral += f(x) * h;
+00107   \}
+00108 
+00109   printf(\textcolor{stringliteral}{"%.5f\(\backslash\)n"}, integral);
+00110 
+00111   \textcolor{keywordflow}{return} 0;
+00112 \}
+\end{DoxyCode}

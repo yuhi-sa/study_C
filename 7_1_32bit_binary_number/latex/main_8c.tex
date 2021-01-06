@@ -1,0 +1,93 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+符号なし整数の2進数表示  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 符号なし整数の2進数表示 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+符号なし整数の2進数表示 \begin{DoxyDate}{日付}
+2017/1/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+符号なし整数の2進数表示 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力に10進数符号なし整数が1つ与えられる（0から2147483647）
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた整数の2進数を表示する（符号なし，32ビット（4バイト））
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}3341817185
+  *  出力例：
+\verbatim
+11000111001100000001010101100001
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}2560
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}00000000000000000000101000000000
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2017/1/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00040                \{
+00041   \textcolor{keywordtype}{int} i;
+00042   \textcolor{keywordtype}{int} x;
+00043   \textcolor{keywordtype}{int} a[40];
+00044 
+00045   scanf(\textcolor{stringliteral}{"%d"}, &x);
+00046 
+00047   \textcolor{keywordflow}{for} (i = 0; 32 > i; i++) \{
+00048     a[i] = x % 2;
+00049     x = x / 2;
+00050   \}
+00051 
+00052   \textcolor{keywordflow}{while} (i > 0) \{
+00053     printf(\textcolor{stringliteral}{"%d"}, a[--i]);
+00054   \}
+00055   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00056 
+00057   \textcolor{keywordflow}{return} 0;
+00058 \}
+\end{DoxyCode}

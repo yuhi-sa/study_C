@@ -1,0 +1,84 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+小文字を大文字に変換する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 小文字を大文字に変換する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+小文字を大文字に変換する \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+小文字を大文字に変換する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力から，文字列が与えられる
+\item 文字列は空白や記号を含み，改行'\par
+'で終わる
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item アルファベット小文字だけを大文字に変換し， その他の文字には何もしない 関数を呼び出し，入力文字列に適用し，表示する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}this is a pen
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}THIS IS A PEN
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}V<qp*VP>2a9-U wN BSOLjW>L2LQiuo  v(7 A4*qhob7eD
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}V<QP*VP>2A9-U WN BSOLJW>L2LQIUO  V(7 A4*QHOB7ED
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00043                \{
+00044   \textcolor{keywordtype}{char} c;
+00045 
+00046   \textcolor{keywordflow}{while} ((c = getchar()) != \textcolor{charliteral}{'\(\backslash\)n'}) \{
+00047     printf(\textcolor{stringliteral}{"%c"}, lower2upper(c));
+00048   \}
+00049   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00050   \textcolor{keywordflow}{return} 0;
+00051 \}
+\end{DoxyCode}

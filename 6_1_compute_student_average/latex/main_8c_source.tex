@@ -1,0 +1,105 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  各学生の平均点数の計算}
+00003 \textcolor{comment}{ *   @date   2017/1/10}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(int argc, char* argv[])}
+00011 \textcolor{comment}{ *  @brief 各学生の平均点数の計算}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  入力：}
+00014 \textcolor{comment}{ *  - 標準入力には，まず学生数が与えられる}
+00015 \textcolor{comment}{ *  - 続いて講義数が与えられる．それに引き続いて，}
+00016 \textcolor{comment}{ *    空白で区切られた講義コード（6桁）が講義数分与えられる．}
+00017 \textcolor{comment}{ *  - 続いて「学生番号（6桁），講義コード，素点（100点満点）」が}
+00018 \textcolor{comment}{ *    （空白で区切られて）与えられる．}
+00019 \textcolor{comment}{ *    このフォーマットは，一人の学生について異なる講義コードが連続しており，}
+00020 \textcolor{comment}{ *    その学生の成績がすべて与えられたら，別の学生の成績が与えられる．}
+00021 \textcolor{comment}{ *  - 仮定：すべての学生は同じ講義を受講していると仮定する}
+00022 \textcolor{comment}{ *    （入力はこの仮定を満たしている）}
+00023 \textcolor{comment}{ *}
+00024 \textcolor{comment}{ *  出力：}
+00025 \textcolor{comment}{ *  - 各学生について，点数の平均を計算する．}
+00026 \textcolor{comment}{  *  - 出力は，学生番号（%06d），平均点数（%.2f）の順に，空白で区切り，改行する．}
+00027 \textcolor{comment}{ *}
+00028 \textcolor{comment}{ *  入力例（途中省略）：}
+00029 \textcolor{comment}{\(\backslash\)verbatim}
+00030 \textcolor{comment}{150}
+00031 \textcolor{comment}{20}
+00032 \textcolor{comment}{030323 044417 112271 166084 230334 288383 304507 343261 375762 408164 415311}
+00033 \textcolor{comment}{417011 467643 486000 518187 618065 674215 712181 755421 883186}
+00034 \textcolor{comment}{002487 030323 74}
+00035 \textcolor{comment}{002487 044417 41}
+00036 \textcolor{comment}{002487 112271 64}
+00037 \textcolor{comment}{002487 166084 38}
+00038 \textcolor{comment}{002487 230334 72}
+00039 \textcolor{comment}{002487 288383 82}
+00040 \textcolor{comment}{002487 304507 67}
+00041 \textcolor{comment}{...}
+00042 \textcolor{comment}{886870 417011 85}
+00043 \textcolor{comment}{886870 467643 61}
+00044 \textcolor{comment}{886870 486000 75}
+00045 \textcolor{comment}{886870 518187 88}
+00046 \textcolor{comment}{886870 618065 76}
+00047 \textcolor{comment}{886870 674215 73}
+00048 \textcolor{comment}{886870 712181 69}
+00049 \textcolor{comment}{886870 755421 90}
+00050 \textcolor{comment}{886870 883186 83}
+00051 \textcolor{comment}{\(\backslash\)endverbatim}
+00052 \textcolor{comment}{  *  出力例（途中省略）：}
+00053 \textcolor{comment}{\(\backslash\)verbatim}
+00054 \textcolor{comment}{002487 73.75}
+00055 \textcolor{comment}{023065 72.75}
+00056 \textcolor{comment}{038034 71.30}
+00057 \textcolor{comment}{038177 72.65}
+00058 \textcolor{comment}{044436 77.35}
+00059 \textcolor{comment}{050530 72.95}
+00060 \textcolor{comment}{...}
+00061 \textcolor{comment}{874131 78.45}
+00062 \textcolor{comment}{875426 71.65}
+00063 \textcolor{comment}{880624 72.00}
+00064 \textcolor{comment}{881667 74.15}
+00065 \textcolor{comment}{882464 78.80}
+00066 \textcolor{comment}{886516 69.10}
+00067 \textcolor{comment}{886870 75.90}
+00068 \textcolor{comment}{\(\backslash\)endverbatim}
+00069 \textcolor{comment}{ *  @date   2017/1/10}
+00070 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00071 \textcolor{comment}{ */}
+00072 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[]) \{
+00073   \textcolor{keywordtype}{int} num\_students;
+00074   scanf(\textcolor{stringliteral}{"%d"}, &num\_students);
+00075 
+00076   \textcolor{keywordtype}{int} num\_class;
+00077   scanf(\textcolor{stringliteral}{"%d"}, &num\_class);
+00078 
+00079   \textcolor{keywordtype}{int} class\_codes[num\_class];
+00080   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_class; i++) \{
+00081     scanf(\textcolor{stringliteral}{"%d"}, &class\_codes[i]);
+00082   \}
+00083 
+00084   \textcolor{keywordtype}{int} student\_id, class\_code, score;
+00085 
+00086   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < num\_students; s++) \{
+00087   \textcolor{keywordtype}{float} a =0;
+00088     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} c = 0; c < num\_class; c++) \{
+00089       scanf(\textcolor{stringliteral}{"%d"}, &student\_id);
+00090       scanf(\textcolor{stringliteral}{"%d"}, &class\_code);
+00091       scanf(\textcolor{stringliteral}{"%d"}, &score);
+00092        a += score;
+00093   \}
+00094   \textcolor{keywordtype}{float} c = a  / num\_class;
+00095       printf(\textcolor{stringliteral}{"%06d %.2f\(\backslash\)n"}, student\_id, c);
+00096 
+00097     
+00098   \}
+00099 
+00100   \textcolor{keywordflow}{return} 0;
+00101 \}
+\end{DoxyCode}

@@ -1,0 +1,174 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+矩形近似による数値積分  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{main_8c_a64a8173e69a61debbf9544c8ee78ac43}{linear} (double x)
+\begin{DoxyCompactList}\small\item\em 1次関数 \end{DoxyCompactList}\item 
+double \hyperlink{main_8c_af467c08824f8a2bcd4597e65fced3ed0}{quad} (double x)
+\begin{DoxyCompactList}\small\item\em 2次関数 \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 矩形近似による数値積分 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+矩形近似による数値積分 \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!linear@{linear}}
+\index{linear@{linear}!main.c@{main.\-c}}
+\paragraph[{linear}]{\setlength{\rightskip}{0pt plus 5cm}double linear (
+\begin{DoxyParamCaption}
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}\label{main_8c_a64a8173e69a61debbf9544c8ee78ac43}
+
+
+1次関数 
+
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00016                         \{
+00017   \textcolor{keywordtype}{double} a = 2.0, b = 0.5;
+00018   \textcolor{keywordflow}{return} a * x + b;
+00019 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+矩形近似による数値積分 
+
+次の近似式による数値積分を行う． $ \int_a^b f(x) dx \approx \sum_{i=1}^{n} f(x_i) \frac{b-a}{n} $
+
+コマンドラインオプション：
+\begin{DoxyItemize}
+\item 1つ目：被積分関数f(x)（linear, quad, sin, conのいずれか）
+\item 2つ目：a
+\item 3つ目：b，ただしa $<$ b
+\item 4つ目：n，ただし0 $<$ n
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 積分結果を小数点第5位まで表示（\%.5f）
+\item 次の場合は，何も表示せずに終了する（return 0で）． 被積分関数のオプションに上記4つの関数以外を指定した場合． aがb以上の場合． nが負の場合．
+\end{DoxyItemize}
+
+実行例： \begin{DoxyVerb}./main linear 0 10 1000
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}105.10500
+\end{DoxyVerb}
+ 実行例： \begin{DoxyVerb}./main sin 0 10 100000
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1.83904
+\end{DoxyVerb}
+ 実行例： \begin{DoxyVerb}./main log 0 10 100
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/12/15 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00073                                  \{
+00074   \textcolor{keywordflow}{if} (argc < 5) \{
+00075     \textcolor{keywordflow}{return} 0;
+00076   \}
+00077 
+00078   double (*f)(double);  \textcolor{comment}{// function pointer}
+00079 
+00080   \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"linear"}, argv[1], 10) == 0) \{
+00081     f = linear;
+00082   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"quad"}, argv[1], 10) == 0) \{
+00083     f = quad;
+00084   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"sin"}, argv[1], 10) == 0) \{
+00085     f = sin;
+00086   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strncmp(\textcolor{stringliteral}{"cos"}, argv[1], 10) == 0) \{
+00087     f = cos;
+00088   \} \textcolor{keywordflow}{else} \{
+00089     \textcolor{keywordflow}{return} 0;
+00090   \}
+00091 
+00092   \textcolor{keywordtype}{double} a = atof(argv[2]);
+00093   \textcolor{keywordtype}{double} b = atof(argv[3]);
+00094   \textcolor{keywordflow}{if} (a >= b) \{
+00095     \textcolor{keywordflow}{return} 0;
+00096   \}
+00097   \textcolor{keywordtype}{int} n = atoi(argv[4]);
+00098   \textcolor{keywordflow}{if} (n <= 0) \{
+00099     \textcolor{keywordflow}{return} 0;
+00100   \}
+00101 
+00102   \textcolor{keywordtype}{double} h = (b - a) / n;
+00103   \textcolor{keywordtype}{double} integral = 0.0;
+00104 
+00105   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{double} x = a; x <= b; x += h) \{
+00106     integral += f(x) * h;
+00107   \}
+00108 
+00109   printf(\textcolor{stringliteral}{"%.5f\(\backslash\)n"}, integral);
+00110 
+00111   \textcolor{keywordflow}{return} 0;
+00112 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!quad@{quad}}
+\index{quad@{quad}!main.c@{main.\-c}}
+\paragraph[{quad}]{\setlength{\rightskip}{0pt plus 5cm}double quad (
+\begin{DoxyParamCaption}
+\item[{double}]{x}
+\end{DoxyParamCaption}
+)}\label{main_8c_af467c08824f8a2bcd4597e65fced3ed0}
+
+
+2次関数 
+
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00023                       \{
+00024   \textcolor{keywordtype}{double} a = 2.0, b = 0.5, c = 1.0;
+00025   \textcolor{keywordflow}{return} a * x * x + b * x + c;
+00026 \}
+\end{DoxyCode}

@@ -1,0 +1,22 @@
+\subsection{functions.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{}
+00002 \textcolor{comment}{/** @fn char lower2upper(char c)}
+00003 \textcolor{comment}{ *  @brief  アルファベット小文字だけを大文字に変換する}
+00004 \textcolor{comment}{ *}
+00005 \textcolor{comment}{ *  仕様：}
+00006 \textcolor{comment}{ *  - アルファベット小文字(aからz)：大文字(AからZ)に変換して返す}
+00007 \textcolor{comment}{ *  - それ以外の文字：そのまま返す}
+00008 \textcolor{comment}{ *}
+00009 \textcolor{comment}{ *  @param  c 文字（char型）}
+00010 \textcolor{comment}{ *  @return 変換した文字（char型）}
+00011 \textcolor{comment}{ *  @date   2016/11/10}
+00012 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00013 \textcolor{comment}{ */}
+00014 \textcolor{keywordtype}{char} lower2upper(\textcolor{keywordtype}{char} c) \{
+00015   \textcolor{keywordflow}{if} (c >= 97 && c <= 122) \{
+00016     c = c - 32;
+00017   \}
+00018 \}
+\end{DoxyCode}

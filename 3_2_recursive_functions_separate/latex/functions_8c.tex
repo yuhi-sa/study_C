@@ -1,0 +1,102 @@
+\subsection{functions.\-c ファイル}
+\label{functions_8c}\index{functions.\-c@{functions.\-c}}
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{functions_8c_a759ae4b46839ee501ae5facb85046926}{Fibonacci} (int n)
+\begin{DoxyCompactList}\small\item\em nについてのフィボナッチ数を計算する \end{DoxyCompactList}\item 
+int \hyperlink{functions_8c_ae1b37c26bb8e5744f5747d6cd6505356}{factorial} (int n)
+\begin{DoxyCompactList}\small\item\em nの階乗を計算する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{関数詳解}
+\index{functions.\-c@{functions.\-c}!factorial@{factorial}}
+\index{factorial@{factorial}!functions.c@{functions.\-c}}
+\paragraph[{factorial}]{\setlength{\rightskip}{0pt plus 5cm}int factorial (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{functions_8c_ae1b37c26bb8e5744f5747d6cd6505356}
+
+
+nの階乗を計算する 
+
+
+\begin{DoxyParams}{引数}
+{\em n} & 正の整数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+nの階乗 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00036                      \{
+00037   \textcolor{keywordtype}{int} m;
+00038   \textcolor{keywordtype}{int} f3 = 1;
+00039 
+00040   \textcolor{keywordflow}{for} (m = 1; m <= n; ++m) \{
+00041     f3 = f3 * m;
+00042   \}
+00043 
+00044   \textcolor{keywordflow}{return} f3;
+00045 \}
+\end{DoxyCode}
+\index{functions.\-c@{functions.\-c}!Fibonacci@{Fibonacci}}
+\index{Fibonacci@{Fibonacci}!functions.c@{functions.\-c}}
+\paragraph[{Fibonacci}]{\setlength{\rightskip}{0pt plus 5cm}int Fibonacci (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{functions_8c_a759ae4b46839ee501ae5facb85046926}
+
+
+nについてのフィボナッチ数を計算する 
+
+フィボナッチ数 $ F_n $は漸化式 $ F_n = F_{n-1} + F_{n-2} $で定義される． ただし $ F_1 = F_2 = 1 $．
+
+
+\begin{DoxyParams}{引数}
+{\em n} & 正の整数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+フィボナッチ数(n) 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00014                      \{
+00015   \textcolor{keywordtype}{int} i;
+00016   \textcolor{keywordtype}{int} f0 = 0;
+00017   \textcolor{keywordtype}{int} f1 = 1;
+00018   \textcolor{keywordtype}{int} f2 = 1;
+00019 
+00020   \textcolor{keywordflow}{for} (i = 1; i < n; i++) \{
+00021     f2 = f1 + f0;
+00022     f0 = f1;
+00023     f1 = f2;
+00024   \}
+00025 
+00026   \textcolor{keywordflow}{return} f2;
+00027 \}
+\end{DoxyCode}

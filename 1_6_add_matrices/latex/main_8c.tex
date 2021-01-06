@@ -1,0 +1,113 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+2つの2次元整数行列の和を計算する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 2つの2次元整数行列の和を計算する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+2つの2次元整数行列の和を計算する \begin{DoxyDate}{日付}
+2016/10/18 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+2つの2次元整数行列の和を計算する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，まず1つ目の2x2行列aの4つの要素 ( $ a_11,a_12,a_21,a_22 $)がこの順番で与えられる．値は整数．
+\item それに引き続いて，2つ目の2x2行列bの4つの要素 ( $ b_11,b_12,b_21,b_22 $)がこの順番で与えられる．値は整数．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた2つの行列の和の行列cを計算し，それを標準出力に表示する．
+\item 表示の1行目にはc\-\_\-11とc\-\_\-12をスペース1つで区切り表示する
+\item 表示の2行目にはc\-\_\-21とc\-\_\-22をスペース1つで区切り表示する
+\item それぞれの数字のprintfによる表示フォーマットは \%4d とする
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}24 -33 -38 24 -75 -26 -46 45
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb} -51  -59
+ -84   69
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}43 -7 62 26 -23 73 -53 -87
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}  20   66
+   9  -61
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/18 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00046                \{
+00047   \textcolor{keywordtype}{int} i;
+00048   \textcolor{keywordtype}{int} n;
+00049   \textcolor{keywordtype}{int} a[i][n];
+00050   \textcolor{keywordtype}{int} b[i][n];
+00051   \textcolor{keywordtype}{int} c[i][n];
+00052 
+00053   \textcolor{keywordflow}{for} (i = 0; i <= 1; i++) \{
+00054     \textcolor{keywordflow}{for} (n = 0; n <= 1; n++) \{
+00055       scanf(\textcolor{stringliteral}{"%4d"}, &a[i][n]);
+00056     \}
+00057   \}
+00058 
+00059   \textcolor{keywordflow}{for} (i = 0; i <= 1; i++) \{
+00060     \textcolor{keywordflow}{for} (n = 0; n <= 1; n++) \{
+00061       scanf(\textcolor{stringliteral}{"%4d"}, &b[i][n]);
+00062     \}
+00063   \}
+00064 
+00065   \textcolor{keywordflow}{for} (i = 0; i <= 1; i++) \{
+00066     \textcolor{keywordflow}{for} (n = 0; n <= 1; n++) \{
+00067       c[i][n] = a[i][n] + b[i][n];
+00068     \}
+00069   \}
+00070 
+00071   \textcolor{keywordflow}{for} (i = 0; i <= 1; i++) \{
+00072     \textcolor{keywordflow}{for} (n = 0; n <= 1; n++) \{
+00073       printf(\textcolor{stringliteral}{"%4d "}, c[i][n]);
+00074     \}
+00075     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00076   \}
+00077 
+00078   \textcolor{keywordflow}{return} 0;
+00079 \}
+\end{DoxyCode}

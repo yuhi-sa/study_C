@@ -1,0 +1,111 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/** @file main.c}
+00002 \textcolor{comment}{ *  @brief  数式微分を行う}
+00003 \textcolor{comment}{ *  @date   2016/10/26}
+00004 \textcolor{comment}{ *  @author 佐伯雄飛}
+00005 \textcolor{comment}{ *  @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(void)}
+00011 \textcolor{comment}{ *  @brief  数式微分を行う}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  標準入力からn次多項式の係数を読み込み，}
+00014 \textcolor{comment}{ *  その多項式と，微分したn-1次多項式を表示する}
+00015 \textcolor{comment}{ *}
+00016 \textcolor{comment}{ *  入力：}
+00017 \textcolor{comment}{ *  - 標準入力の最初の整数は，多項式の次数 n（nは0以上の整数）}
+00018 \textcolor{comment}{ *  - それに引き続くn個の実数はn次多項式の係数}
+00019 \textcolor{comment}{ *}
+00020 \textcolor{comment}{ *  出力：}
+00021 \textcolor{comment}{ *  - n次多項式を以下のフォーマットで出力}
+00022 \textcolor{comment}{ *    c0+c1x+c2x^2+...+cnx^n}
+00023 \textcolor{comment}{ *  - 微分したn-1次多項式を以下のフォーマットで出力}
+00024 \textcolor{comment}{ *    c0+c1x+c2x^2+...+cnx^n-1}
+00025 \textcolor{comment}{ *  - 空白は表示しない}
+00026 \textcolor{comment}{ *  - 係数が負であれば，+記号を-にする}
+00027 \textcolor{comment}{ *  - 定数係数(c0)が負であれば-記号を表示する．正であれば記号を表示しない}
+00028 \textcolor{comment}{ *  - 係数は小数点第1位まで表示する(%.1f)．}
+00029 \textcolor{comment}{ *  -}
+00030 \textcolor{comment}{次数nは，2次以降の項は整数だけを表示しx^nとする．1次の項はxと表示する．定数項はxを表示しない．}
+00031 \textcolor{comment}{ *}
+00032 \textcolor{comment}{ *  注意：}
+00033 \textcolor{comment}{ *  - 次数nが負の場合には，何も表示せずに終了する（return 0で）}
+00034 \textcolor{comment}{ *  - 次数nが0の場合は定数項だけであり，微分したら0を表示する}
+00035 \textcolor{comment}{ *}
+00036 \textcolor{comment}{ *  入力例：}
+00037 \textcolor{comment}{\(\backslash\)verbatim}
+00038 \textcolor{comment}{5 0.299015168361 -0.634498680199 0.076517409876 -0.155687714204 0.50453614886}
+00039 \textcolor{comment}{0.260700633183}
+00040 \textcolor{comment}{\(\backslash\)endverbatim}
+00041 \textcolor{comment}{  *  出力例：}
+00042 \textcolor{comment}{\(\backslash\)verbatim}
+00043 \textcolor{comment}{0.3-0.6x+0.1x^2-0.2x^3+0.5x^4+0.3x^5}
+00044 \textcolor{comment}{-0.6+0.2x-0.5x^2+2.0x^3+1.3x^4}
+00045 \textcolor{comment}{\(\backslash\)endverbatim}
+00046 \textcolor{comment}{  *  入力例：}
+00047 \textcolor{comment}{\(\backslash\)verbatim}
+00048 \textcolor{comment}{-1}
+00049 \textcolor{comment}{\(\backslash\)endverbatim}
+00050 \textcolor{comment}{  *  出力例：}
+00051 \textcolor{comment}{\(\backslash\)verbatim}
+00052 \textcolor{comment}{\(\backslash\)endverbatim}
+00053 \textcolor{comment}{  *  入力例：}
+00054 \textcolor{comment}{\(\backslash\)verbatim}
+00055 \textcolor{comment}{0 0.338757150218}
+00056 \textcolor{comment}{\(\backslash\)endverbatim}
+00057 \textcolor{comment}{  *  出力例：}
+00058 \textcolor{comment}{\(\backslash\)verbatim}
+00059 \textcolor{comment}{0.3}
+00060 \textcolor{comment}{0.0}
+00061 \textcolor{comment}{\(\backslash\)endverbatim}
+00062 \textcolor{comment}{ *  @date   2016/10/26}
+00063 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00064 \textcolor{comment}{ */}
+00065 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00066   \textcolor{keywordtype}{int} n;  \textcolor{comment}{// order of polynomial}
+00067   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00068   n++;
+00069 
+00070   \textcolor{keywordflow}{if} (n < 1) \{
+00071     printf(\textcolor{stringliteral}{""});
+00072   \}
+00073 
+00074   \textcolor{keywordflow}{else} \{
+00075     \textcolor{keywordtype}{float} c[n];  \textcolor{comment}{// coefficient of n-th order term}
+00076     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00077       scanf(\textcolor{stringliteral}{"%f"}, &c[i]);
+00078     \}
+00079 
+00080     \textcolor{comment}{// print the polynomial: c0 + c1 x + c2 x^2 + .... + cn x^n}
+00081 
+00082     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00083       printf(i > 1 ? \textcolor{stringliteral}{"%+.1fx^%d"} : (i == 0 ? \textcolor{stringliteral}{"%.1f"} : \textcolor{stringliteral}{"%+.1fx"}), c[i], i);
+00084     \}
+00085     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00086 
+00087     \textcolor{keywordflow}{if} (n == 1) \{
+00088       printf(\textcolor{stringliteral}{"0.0"});
+00089       printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00090     \}
+00091 
+00092     \textcolor{keywordflow}{else} \{
+00093       \textcolor{comment}{// differenciation}
+00094       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < n; i++) \{
+00095         c[i] *= i;
+00096         c[i - 1] = c[i];
+00097       \}
+00098 
+00099       \textcolor{comment}{// print the derivative: c0' + c1' x + c2' x^2 + .... + cn' x^n-1}
+00100       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n - 1; i++) \{
+00101         printf(i > 1 ? \textcolor{stringliteral}{"%+.1fx^%d"} : (i == 0 ? \textcolor{stringliteral}{"%.1f"} : \textcolor{stringliteral}{"%+.1fx"}), c[i], i);
+00102       \}
+00103       printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00104     \}
+00105   \}
+00106   \textcolor{keywordflow}{return} 0;
+00107 \}
+\end{DoxyCode}

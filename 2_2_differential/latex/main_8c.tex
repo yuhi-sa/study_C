@@ -1,0 +1,135 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+数式微分を行う  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 数式微分を行う \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+数式微分を行う \begin{DoxyDate}{日付}
+2016/10/26 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+数式微分を行う 
+
+標準入力からn次多項式の係数を読み込み， その多項式と，微分したn-\/1次多項式を表示する
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力の最初の整数は，多項式の次数 n（nは0以上の整数）
+\item それに引き続くn個の実数はn次多項式の係数
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item n次多項式を以下のフォーマットで出力 c0+c1x+c2x$^\wedge$2+...+cnx$^\wedge$n
+\item 微分したn-\/1次多項式を以下のフォーマットで出力 c0+c1x+c2x$^\wedge$2+...+cnx$^\wedge$n-\/1
+\item 空白は表示しない
+\item 係数が負であれば，+記号を-\/にする
+\item 定数係数(c0)が負であれば-\/記号を表示する．正であれば記号を表示しない
+\item 係数は小数点第1位まで表示する(\%.1f)．
+\item 次数nは，2次以降の項は整数だけを表示しx$^\wedge$nとする．1次の項はxと表示する．定数項はxを表示しない． \begin{DoxyVerb}注意：
+- 次数nが負の場合には，何も表示せずに終了する（return 0で）
+- 次数nが0の場合は定数項だけであり，微分したら0を表示する
+
+入力例：
+\end{DoxyVerb}
+ \begin{DoxyVerb}5 0.299015168361 -0.634498680199 0.076517409876 -0.155687714204 0.50453614886
+0.260700633183
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.3-0.6x+0.1x^2-0.2x^3+0.5x^4+0.3x^5
+-0.6+0.2x-0.5x^2+2.0x^3+1.3x^4
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}-1
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}0 0.338757150218
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}0.3
+0.0
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/26 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+\end{DoxyItemize}
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00065                \{
+00066   \textcolor{keywordtype}{int} n;  \textcolor{comment}{// order of polynomial}
+00067   scanf(\textcolor{stringliteral}{"%d"}, &n);
+00068   n++;
+00069 
+00070   \textcolor{keywordflow}{if} (n < 1) \{
+00071     printf(\textcolor{stringliteral}{""});
+00072   \}
+00073 
+00074   \textcolor{keywordflow}{else} \{
+00075     \textcolor{keywordtype}{float} c[n];  \textcolor{comment}{// coefficient of n-th order term}
+00076     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00077       scanf(\textcolor{stringliteral}{"%f"}, &c[i]);
+00078     \}
+00079 
+00080     \textcolor{comment}{// print the polynomial: c0 + c1 x + c2 x^2 + .... + cn x^n}
+00081 
+00082     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00083       printf(i > 1 ? \textcolor{stringliteral}{"%+.1fx^%d"} : (i == 0 ? \textcolor{stringliteral}{"%.1f"} : \textcolor{stringliteral}{"%+.1fx"}), c[i], i);
+00084     \}
+00085     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00086 
+00087     \textcolor{keywordflow}{if} (n == 1) \{
+00088       printf(\textcolor{stringliteral}{"0.0"});
+00089       printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00090     \}
+00091 
+00092     \textcolor{keywordflow}{else} \{
+00093       \textcolor{comment}{// differenciation}
+00094       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i < n; i++) \{
+00095         c[i] *= i;
+00096         c[i - 1] = c[i];
+00097       \}
+00098 
+00099       \textcolor{comment}{// print the derivative: c0' + c1' x + c2' x^2 + .... + cn' x^n-1}
+00100       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n - 1; i++) \{
+00101         printf(i > 1 ? \textcolor{stringliteral}{"%+.1fx^%d"} : (i == 0 ? \textcolor{stringliteral}{"%.1f"} : \textcolor{stringliteral}{"%+.1fx"}), c[i], i);
+00102       \}
+00103       printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00104     \}
+00105   \}
+00106   \textcolor{keywordflow}{return} 0;
+00107 \}
+\end{DoxyCode}

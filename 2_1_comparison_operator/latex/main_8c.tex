@@ -1,0 +1,82 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+a $>$ b $>$ cが成立するかどうかを判定する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em a $>$ b $>$ cが成立するかどうかを判定する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+a $>$ b $>$ cが成立するかどうかを判定する \begin{DoxyDate}{日付}
+2016/10/26 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+a $>$ b $>$ cが成立するかどうかを判定する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には3個の実数a, b, cがこの順番で与えられる．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item $ a > b > c $が成立すれば1を，成立しなければ0を表示する
+\end{DoxyItemize}
+
+\begin{DoxyDate}{日付}
+2016/10/26 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00022                \{
+00023   \textcolor{keywordtype}{float} a, b, c;
+00024   scanf(\textcolor{stringliteral}{"%f"}, &a);
+00025   scanf(\textcolor{stringliteral}{"%f"}, &b);
+00026   scanf(\textcolor{stringliteral}{"%f"}, &c);
+00027 
+00028   \textcolor{keywordflow}{if} (a > b) \{
+00029     \textcolor{keywordflow}{if} (b > c) \{
+00030       printf(\textcolor{stringliteral}{"1\(\backslash\)n"});
+00031     \} \textcolor{keywordflow}{else} \{
+00032       printf(\textcolor{stringliteral}{"0\(\backslash\)n"});
+00033     \}
+00034   \} \textcolor{keywordflow}{else} \{
+00035     printf(\textcolor{stringliteral}{"0\(\backslash\)n"});
+00036   \}
+00037   \textcolor{keywordflow}{return} 0;
+00038 \}
+\end{DoxyCode}

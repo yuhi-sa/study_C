@@ -1,0 +1,22 @@
+\subsection{functions.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{}
+00002 \textcolor{comment}{/** @fn float average(float x[], int n)}
+00003 \textcolor{comment}{ *  @brief  配列の平均を計算する}
+00004 \textcolor{comment}{ *  @param  n 配列xの要素数(n>=1)}
+00005 \textcolor{comment}{ *  @return 配列の平均値}
+00006 \textcolor{comment}{ *  @date   2016/11/10}
+00007 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00008 \textcolor{comment}{ */}
+00009 \textcolor{keywordtype}{float} average(\textcolor{keywordtype}{float} x[], \textcolor{keywordtype}{int} n) \{
+00010   \textcolor{keywordtype}{float} a = 0;
+00011   \textcolor{keywordtype}{int} i;
+00012 
+00013   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{
+00014     a += x[i];
+00015   \}
+00016 
+00017   \textcolor{keywordflow}{return} a / n;
+00018 \}
+\end{DoxyCode}

@@ -1,0 +1,232 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+メニュー項目を表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_ade977e2860c479f072d77351eacf3a4b}{show\-\_\-items} (char $\ast$items\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em メニュー項目を表示する \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a4cf619ef194bbf1495713cc88b50233a}{show\-\_\-menu} (char $\ast$$\ast$menu\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em メニューを表示する \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em メニュー項目を表示する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+メニュー項目を表示する \begin{DoxyDate}{日付}
+2016/11/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+メニュー項目を表示する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力から，メニュー項目を表すアルファベット1文字が与えられる
+\item もしくは終了(quit)を意味する'q'が与えられる
+\item 文字が複数与えられる場合，空白（もしくは改行）で区切られている
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item メニューmenuを表示する
+\item そして入力されたアルファベット1文字に対応するメニュー項目の内容を表示する．
+\item 文字'q'が与えられた場合，終了する．
+\item それ以外の文字が入力された場合，menu表示に戻る
+\item 空白（もしくは改行）の後に続けて文字が与えられた場合，上記の処理を繰り返す． \begin{DoxyVerb}注意：
+- メニュー項目 File の場合，先頭の1文字 F が対応するアルファベットである．
+- 以下のコードでは4つのメニュー項目が定義されている．
+\end{DoxyVerb}
+ \begin{DoxyVerb}  char *file[] = {"File(F)", "open",       "close",    "new",      "quit"};
+  char *edit[] = {"Edit(E)", "undo",       "paste",    "copy",     "delete"};
+  char *view[] = {"View(V)", "fullscreen", "minimize", "large",    "small"};
+  char *help[] = {"Help(H)", "help",       "search",   "document", "website"};
+  char **menu[] = {file, edit, view, help};
+\end{DoxyVerb}
+
+\end{DoxyItemize}
+
+これら以外にもメニューを追加することを考慮して，入力文字が\-Fか\-Eかを判定するというコードを書かず， 一般的なコードを書くこと．
+
+実行例（キーボード入力の場合）： \begin{DoxyVerb}$ ./main
+File(F) Edit(E) View(V) Help(H)
+F
+open close new quit
+File(F) Edit(E) View(V) Help(H)
+E
+undo paste copy delete
+File(F) Edit(E) View(V) Help(H)
+V
+fullscreen minimize large small
+File(F) Edit(E) View(V) Help(H)
+H
+help search document website
+File(F) Edit(E) View(V) Help(H)
+D
+File(F) Edit(E) View(V) Help(H)
+q
+$
+\end{DoxyVerb}
+ 標準入力例： \begin{DoxyVerb}F F E V
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}File(F) Edit(E) View(V) Help(H)
+open close new quit
+File(F) Edit(E) View(V) Help(H)
+open close new quit
+File(F) Edit(E) View(V) Help(H)
+undo paste copy delete
+File(F) Edit(E) View(V) Help(H)
+fullscreen minimize large small
+File(F) Edit(E) View(V) Help(H)
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/11/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00110                \{
+00111   \textcolor{keywordtype}{char}* file[] = \{\textcolor{stringliteral}{"File(F)"}, \textcolor{stringliteral}{"open"}, \textcolor{stringliteral}{"close"}, \textcolor{stringliteral}{"new"}, \textcolor{stringliteral}{"quit"}\};
+00112   \textcolor{keywordtype}{char}* edit[] = \{\textcolor{stringliteral}{"Edit(E)"}, \textcolor{stringliteral}{"undo"}, \textcolor{stringliteral}{"paste"}, \textcolor{stringliteral}{"copy"}, \textcolor{stringliteral}{"delete"}\};
+00113   \textcolor{keywordtype}{char}* view[] = \{\textcolor{stringliteral}{"View(V)"}, \textcolor{stringliteral}{"fullscreen"}, \textcolor{stringliteral}{"minimize"}, \textcolor{stringliteral}{"large"}, \textcolor{stringliteral}{"small"}\};
+00114   \textcolor{keywordtype}{char}* help[] = \{\textcolor{stringliteral}{"Help(H)"}, \textcolor{stringliteral}{"help"}, \textcolor{stringliteral}{"search"}, \textcolor{stringliteral}{"document"}, \textcolor{stringliteral}{"website"}\};
+00115   \textcolor{keywordtype}{char}** menu[] = \{file, edit, view, help\};
+00116   \textcolor{keywordtype}{int} num\_menu = 4;
+00117 
+00118   \textcolor{keywordtype}{int} len = 100;
+00119   \textcolor{keywordtype}{char} input[100];
+00120   \textcolor{keywordtype}{bool} is\_end = \textcolor{keyword}{false};
+00121 
+00122   \textcolor{keywordflow}{while} (!is\_end) \{
+00123     show_menu(menu, num\_menu);
+00124 
+00125     \textcolor{keywordtype}{int} return\_value = scanf(\textcolor{stringliteral}{"%99s"}, input);
+00126 
+00127     \textcolor{keywordflow}{if} (return\_value == 0 ||    \textcolor{comment}{// if input didn't match to %s}
+00128         return\_value == EOF) \{  \textcolor{comment}{// if there are no input}
+00129       \textcolor{keywordflow}{break};                    \textcolor{comment}{// break while}
+00130     \}
+00131 
+00132     \textcolor{keywordflow}{if} (\textcolor{charliteral}{'q'} == input[0]) \{  \textcolor{comment}{// if input is 'q'}
+00133       \textcolor{keywordflow}{break};                \textcolor{comment}{// break while}
+00134     \}
+00135     \textcolor{comment}{// printf("%c",*(*menu[0]+5));}
+00136     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n = 0; n < num\_menu; n++) \{
+00137       \textcolor{keywordflow}{if} (input[0] == *(*menu[n] + 5)) \{
+00138         show_items(menu[n], 4);
+00139       \}
+00140 
+00141       \textcolor{comment}{// 入力文字がどのメニュー項目に相当するのかを判定し，show\_items()で表示してください}
+00142     \}
+00143   \}
+00144 
+00145   \textcolor{keywordflow}{return} 0;
+00146 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!show\-\_\-items@{show\-\_\-items}}
+\index{show\-\_\-items@{show\-\_\-items}!main.c@{main.\-c}}
+\paragraph[{show\-\_\-items}]{\setlength{\rightskip}{0pt plus 5cm}void show\-\_\-items (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{items\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{main_8c_ade977e2860c479f072d77351eacf3a4b}
+
+
+メニュー項目を表示する 
+
+
+\begin{DoxyParams}{引数}
+{\em items} & メニュー項目 \\
+\hline
+{\em n} & 項目数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{日付}
+2016/06/08 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+Toru Tamaki 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00018                                       \{
+00019   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 1; i <= n; i++) \{
+00020     printf(\textcolor{stringliteral}{"%s "}, items[i]);
+00021   \}
+00022   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00023 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!show\-\_\-menu@{show\-\_\-menu}}
+\index{show\-\_\-menu@{show\-\_\-menu}!main.c@{main.\-c}}
+\paragraph[{show\-\_\-menu}]{\setlength{\rightskip}{0pt plus 5cm}show\-\_\-menu (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{menu\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{main_8c_a4cf619ef194bbf1495713cc88b50233a}
+
+
+メニューを表示する 
+
+
+\begin{DoxyParams}{引数}
+{\em menu} & メニュー \\
+\hline
+{\em n} & メニュー数 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{日付}
+2016/06/08 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+Toru Tamaki 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00032                                      \{
+00033   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < n; i++) \{
+00034     printf(\textcolor{stringliteral}{"%s "}, menu[i][0]);
+00035   \}
+00036   printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00037 \}
+\end{DoxyCode}

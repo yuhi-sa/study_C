@@ -1,0 +1,73 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  2個の実数に演算を適用する}
+00003 \textcolor{comment}{ *   @date   2016/10/17}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(void)}
+00011 \textcolor{comment}{ *  @brief  2個の実数に演算を適用する}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  入力：}
+00014 \textcolor{comment}{ *  - 標準入力の最初は演算子を表す文字（+, -, *, / のいずれか）}
+00015 \textcolor{comment}{ *  - それに引き続く2個の実数は演算子を適用する数値}
+00016 \textcolor{comment}{ *}
+00017 \textcolor{comment}{ *  出力：}
+00018 \textcolor{comment}{ *  - 2個の数値に演算子を適用した結果の数値を出力する}
+00019 \textcolor{comment}{ *  - 数値は小数点第2位まで表示する（%.2f）．}
+00020 \textcolor{comment}{ *}
+00021 \textcolor{comment}{ *  入力例：}
+00022 \textcolor{comment}{\(\backslash\)verbatim}
+00023 \textcolor{comment}{+ 0.912665355362 0.306135641218}
+00024 \textcolor{comment}{\(\backslash\)endverbatim}
+00025 \textcolor{comment}{  *  出力例：}
+00026 \textcolor{comment}{\(\backslash\)verbatim}
+00027 \textcolor{comment}{1.22}
+00028 \textcolor{comment}{\(\backslash\)endverbatim}
+00029 \textcolor{comment}{  *  入力例：}
+00030 \textcolor{comment}{\(\backslash\)verbatim}
+00031 \textcolor{comment}{/ 0.914028521038 0.759992013169}
+00032 \textcolor{comment}{\(\backslash\)endverbatim}
+00033 \textcolor{comment}{  *  出力例：}
+00034 \textcolor{comment}{\(\backslash\)verbatim}
+00035 \textcolor{comment}{1.20}
+00036 \textcolor{comment}{\(\backslash\)endverbatim}
+00037 \textcolor{comment}{ *  @date   2016/10/17}
+00038 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00039 \textcolor{comment}{ */}
+00040 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00041   \textcolor{keywordtype}{char} \textcolor{keyword}{operator};
+00042   scanf(\textcolor{stringliteral}{"%c"}, &\textcolor{keyword}{operator});
+00043 
+00044   \textcolor{keywordtype}{float} operand1;
+00045   \textcolor{keywordtype}{float} operand2;
+00046   scanf(\textcolor{stringliteral}{"%f"}, &operand1);
+00047   scanf(\textcolor{stringliteral}{"%f"}, &operand2);
+00048 
+00049   \textcolor{keywordtype}{float} result;
+00050   \textcolor{keywordflow}{switch} (\textcolor{keyword}{operator}) \{
+00051     \textcolor{keywordflow}{case} \textcolor{charliteral}{'+'}:
+00052       result = operand1 + operand2;
+00053       \textcolor{keywordflow}{break};
+00054     \textcolor{keywordflow}{case} \textcolor{charliteral}{'-'}:
+00055       result = operand1 - operand2;
+00056       \textcolor{keywordflow}{break};
+00057     \textcolor{keywordflow}{case} \textcolor{charliteral}{'*'}:
+00058       result = operand1 * operand2;
+00059       \textcolor{keywordflow}{break};
+00060     \textcolor{keywordflow}{case} \textcolor{charliteral}{'/'}:
+00061       result = operand1 / operand2;
+00062       \textcolor{keywordflow}{break};
+00063     \textcolor{keywordflow}{default}:  \textcolor{comment}{// unknown operator}
+00064       result = 0;
+00065   \}
+00066   printf(\textcolor{stringliteral}{"%.2f\(\backslash\)n"}, result);
+00067 
+00068   \textcolor{keywordflow}{return} 0;
+00069 \}
+\end{DoxyCode}

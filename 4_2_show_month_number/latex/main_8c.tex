@@ -1,0 +1,125 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+月の番号を表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 月の番号を表示する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+月の番号を表示する \begin{DoxyDate}{日付}
+2016/11/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+月の番号を表示する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力から，文字列（月の名前）が与えられる
+\item 文字列が複数与えられる場合，空白で区切られている．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた月名の文字列に対応する月の数値を表示する（表示後は改行する）．
+\item 月名の文字列が複数与えられている場合，上記の処理を繰り返す．
+\item \char`\"{}end\char`\"{}という文字列が入力された場合，その時点で終了する．
+\item 月名ではない文字列が入力された場合，何も表示しない．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}January March Avril December
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1
+3
+12
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}January end March Avril December
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}1
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/02 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00046                \{
+00047   \textcolor{keywordtype}{char}* year[] = \{\textcolor{stringliteral}{"January"},
+00048                   \textcolor{stringliteral}{"February"},
+00049                   \textcolor{stringliteral}{"March"},
+00050                   \textcolor{stringliteral}{"April"},
+00051                   \textcolor{stringliteral}{"May"},
+00052                   \textcolor{stringliteral}{"June"},
+00053                   \textcolor{stringliteral}{"July"},
+00054                   \textcolor{stringliteral}{"August"},
+00055                   \textcolor{stringliteral}{"September"},
+00056                   \textcolor{stringliteral}{"October"},
+00057                   \textcolor{stringliteral}{"November"},
+00058                   \textcolor{stringliteral}{"December"}\};
+00059 
+00060   \textcolor{keywordtype}{int} len = 100;
+00061   \textcolor{keywordtype}{char} input[100];
+00062   \textcolor{keywordtype}{bool} is\_end = \textcolor{keyword}{false};
+00063 
+00064   \textcolor{keywordflow}{while} (!is\_end) \{
+00065     \textcolor{keywordtype}{int} return\_value = scanf(\textcolor{stringliteral}{"%99s"}, input);
+00066 
+00067     \textcolor{keywordflow}{if} (return\_value == 0 ||    \textcolor{comment}{// if input didn't match to %s}
+00068         return\_value == EOF) \{  \textcolor{comment}{// if there are no input}
+00069       \textcolor{keywordflow}{break};                    \textcolor{comment}{// break while}
+00070     \}
+00071 
+00072     \textcolor{comment}{// if input is "end"}
+00073     \textcolor{keywordflow}{if} (strncmp(input, \textcolor{stringliteral}{"end"}, len) == 0) \{
+00074       \textcolor{keywordflow}{break};  \textcolor{comment}{// break while}
+00075     \}
+00076 
+00077     \textcolor{keywordtype}{char} s1[100];
+00078 
+00079     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} month = 0; month < 12; month++) \{
+00080       \textcolor{keywordflow}{if} (strncmp(input, year[month], 4) == 0) \{
+00081         printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, month + 1);
+00082 
+00083         \textcolor{comment}{// inputとyear[month]が等しいかどうかを判定してください}
+00084       \}
+00085     \}
+00086   \}
+00087 
+00088   \textcolor{keywordflow}{return} 0;
+00089 \}
+\end{DoxyCode}

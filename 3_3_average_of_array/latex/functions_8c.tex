@@ -1,0 +1,53 @@
+\subsection{functions.\-c ファイル}
+\label{functions_8c}\index{functions.\-c@{functions.\-c}}
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{functions_8c_a65d907ddbef333f45d6a26c960a095f0}{average} (float x\mbox{[}$\,$\mbox{]}, int n)
+\begin{DoxyCompactList}\small\item\em 配列の平均を計算する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{関数詳解}
+\index{functions.\-c@{functions.\-c}!average@{average}}
+\index{average@{average}!functions.c@{functions.\-c}}
+\paragraph[{average}]{\setlength{\rightskip}{0pt plus 5cm}float average (
+\begin{DoxyParamCaption}
+\item[{float}]{x\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{functions_8c_a65d907ddbef333f45d6a26c960a095f0}
+
+
+配列の平均を計算する 
+
+
+\begin{DoxyParams}{引数}
+{\em n} & 配列xの要素数(n$>$=1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{戻り値}
+配列の平均値 
+\end{DoxyReturn}
+\begin{DoxyDate}{日付}
+2016/11/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{functions_8c_source}{functions.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00009                                 \{
+00010   \textcolor{keywordtype}{float} a = 0;
+00011   \textcolor{keywordtype}{int} i;
+00012 
+00013   \textcolor{keywordflow}{for} (i = 0; i < n; i++) \{
+00014     a += x[i];
+00015   \}
+00016 
+00017   \textcolor{keywordflow}{return} a / n;
+00018 \}
+\end{DoxyCode}

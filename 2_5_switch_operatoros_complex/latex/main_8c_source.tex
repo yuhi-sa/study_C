@@ -1,0 +1,89 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  2個の複素数を標準入力から読み込み，その演算結果を表示する}
+00003 \textcolor{comment}{ *   @date   2016/10/27}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{comment}{}
+00010 \textcolor{comment}{/** @fn int main(void)}
+00011 \textcolor{comment}{ *  @brief  2個の複素数を標準入力から読み込み，その演算結果を表示する}
+00012 \textcolor{comment}{ *}
+00013 \textcolor{comment}{ *  入力：}
+00014 \textcolor{comment}{ *  - 標準入力の最初は演算子を表す文字，+, -, *, / のいずれか．}
+00015 \textcolor{comment}{ *    これ以外の文字が与えられたら，}
+00016 \textcolor{comment}{\(\backslash\)verbatim}
+00017 \textcolor{comment}{Error: unknown operator}
+00018 \textcolor{comment}{\(\backslash\)endverbatim}
+00019 \textcolor{comment}{ *    というエラーを表示し，（return 0で）終了する．}
+00020 \textcolor{comment}{ *  - それに引き続く4個の実数は，演算子を適用する複素数z1とz2の実部と虚部が}
+00021 \textcolor{comment}{ *    Re(z1) Im(z1) Re(z2) Im(z2) の順で与えられる}
+00022 \textcolor{comment}{ *}
+00023 \textcolor{comment}{ *  出力：}
+00024 \textcolor{comment}{ *  - 2個の複素数に演算を適用した結果の複素数を表示する}
+00025 \textcolor{comment}{ *  - 実部，虚部ともに数点第5位まで表示する（%.5f）}
+00026 \textcolor{comment}{ *  - a+bjの形式で表示する．}
+00027 \textcolor{comment}{ *    aは実部，bは虚部．ただしbが負の場合にはa-bjと出力する}
+00028 \textcolor{comment}{ *}
+00029 \textcolor{comment}{ *  入力例：}
+00030 \textcolor{comment}{\(\backslash\)verbatim}
+00031 \textcolor{comment}{/ 0.183514370734 0.721236372839 0.00169904140328 0.161001208126}
+00032 \textcolor{comment}{\(\backslash\)endverbatim}
+00033 \textcolor{comment}{  *  出力例：}
+00034 \textcolor{comment}{\(\backslash\)verbatim}
+00035 \textcolor{comment}{4.49122-1.09244j}
+00036 \textcolor{comment}{\(\backslash\)endverbatim}
+00037 \textcolor{comment}{  *  入力例：}
+00038 \textcolor{comment}{\(\backslash\)verbatim}
+00039 \textcolor{comment}{- 0.270864483478 0.847355883465 0.213440078194 0.417426165812}
+00040 \textcolor{comment}{\(\backslash\)endverbatim}
+00041 \textcolor{comment}{  *  出力例：}
+00042 \textcolor{comment}{\(\backslash\)verbatim}
+00043 \textcolor{comment}{0.05742+0.42993j}
+00044 \textcolor{comment}{\(\backslash\)endverbatim}
+00045 \textcolor{comment}{ *  @date   2016/10/27}
+00046 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00047 \textcolor{comment}{ */}
+00048 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00049   \textcolor{keywordtype}{char} a;
+00050   \textcolor{keywordtype}{float} Re[3];
+00051   \textcolor{keywordtype}{float} Im[3];
+00052 
+00053   scanf(\textcolor{stringliteral}{"%c"}, &a);
+00054   scanf(\textcolor{stringliteral}{"%f"}, &Re[0]);
+00055   scanf(\textcolor{stringliteral}{"%f"}, &Im[0]);
+00056   scanf(\textcolor{stringliteral}{"%f"}, &Re[1]);
+00057   scanf(\textcolor{stringliteral}{"%f"}, &Im[1]);
+00058 
+00059   \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'+'}) \{
+00060     Re[2] = Re[0] + Re[1];
+00061     Im[2] = Im[0] + Im[1];
+00062   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'-'}) \{
+00063     Re[2] = Re[0] - Re[1];
+00064     Im[2] = Im[0] - Im[1];
+00065   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'*'}) \{
+00066     Re[2] = Re[0] * Re[1] - Im[0] * Im[1];
+00067     Im[2] = Re[0] * Im[1] + Re[1] * Im[0];
+00068   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (a == \textcolor{charliteral}{'/'}) \{
+00069     Re[2] = ((Re[0] * Re[1]) + (Im[0] * Im[1])) /
+00070             ((Re[1] * Re[1]) + (Im[1] * Im[1]));
+00071     Im[2] = ((Im[0] * Re[1]) - (Re[0] * Im[1])) /
+00072             ((Re[1] * Re[1]) + (Im[1] * Im[1]));
+00073   \}
+00074 
+00075   \textcolor{keywordflow}{if} (Im[2] > 0) \{
+00076     printf(\textcolor{stringliteral}{"%.5f+%.5fj"}, Re[2], Im[2]);
+00077     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00078   \}
+00079   \textcolor{keywordflow}{if} (Im[2] < 0) \{
+00080     printf(\textcolor{stringliteral}{"%.5f%.5fj"}, Re[2], Im[2]);
+00081     printf(\textcolor{stringliteral}{"\(\backslash\)n"});
+00082   \}
+00083 
+00084   \textcolor{keywordflow}{return} 0;
+00085 \}
+\end{DoxyCode}

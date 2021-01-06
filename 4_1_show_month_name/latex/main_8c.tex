@@ -1,0 +1,156 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+月の英語名を表示する  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_a4ddd9421d6fe9fa0be8c4ac4e7b6907c}{show\-\_\-month\-\_\-name} (char $\ast$month)
+\begin{DoxyCompactList}\small\item\em 文字列monthをprintfで表示する \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em 月の英語名を表示する \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+月の英語名を表示する \begin{DoxyDate}{日付}
+2016/11/24 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+月の英語名を表示する 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力から，1から12までの数字が与えられる
+\item 数字が複数与えられる場合，空白で区切られている．
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 与えられた数字に対応する月の名前を表示する（表示後は改行する）．
+\item 数字が複数与えられている場合，上記の処理を繰り返す．
+\item 1から12までの数字ではないものが入力された場合，その時点で終了する．
+\end{DoxyItemize}
+
+入力例： \begin{DoxyVerb}1 2 5
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}January
+February
+May
+\end{DoxyVerb}
+ 入力例： \begin{DoxyVerb}1 2 12 55 1
+\end{DoxyVerb}
+ 出力例： \begin{DoxyVerb}January
+February
+December
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2016/10/02 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+自分の名前，学生番号 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00057                \{
+00058   \textcolor{keywordtype}{char}* year[] = \{\textcolor{stringliteral}{"January"},
+00059                   \textcolor{stringliteral}{"February"},
+00060                   \textcolor{stringliteral}{"March"},
+00061                   \textcolor{stringliteral}{"April"},
+00062                   \textcolor{stringliteral}{"May"},
+00063                   \textcolor{stringliteral}{"June"},
+00064                   \textcolor{stringliteral}{"July"},
+00065                   \textcolor{stringliteral}{"August"},
+00066                   \textcolor{stringliteral}{"September"},
+00067                   \textcolor{stringliteral}{"October"},
+00068                   \textcolor{stringliteral}{"November"},
+00069                   \textcolor{stringliteral}{"December"}\};
+00070 
+00071   \textcolor{keywordtype}{int} len = 100;
+00072   \textcolor{keywordtype}{char} command[100];
+00073   \textcolor{keywordtype}{bool} is\_end = \textcolor{keyword}{false};
+00074 
+00075   \textcolor{keywordflow}{while} (!is\_end) \{
+00076     \textcolor{keywordtype}{int} return\_value = scanf(\textcolor{stringliteral}{"%99s"}, command);
+00077 
+00078     \textcolor{keywordflow}{if} (return\_value == 0 ||    \textcolor{comment}{// if input didn't match to %s}
+00079         return\_value == EOF) \{  \textcolor{comment}{// if there are no input}
+00080       \textcolor{keywordflow}{break};
+00081     \}
+00082 
+00083     \textcolor{keywordtype}{int} n = atoi(command);  \textcolor{comment}{// conversion from string to int}
+00084 
+00085     \textcolor{keywordflow}{if} (1 <= n && n <= 12) \{
+00086       printf(\textcolor{stringliteral}{"%s\(\backslash\)n"}, year[n - 1]);
+00087 
+00088       \textcolor{comment}{// ここで show\_month\_nameを呼び出してください}
+00089 
+00090     \} \textcolor{keywordflow}{else} \{
+00091       is\_end = \textcolor{keyword}{true};
+00092     \}
+00093   \}
+00094 
+00095   \textcolor{keywordflow}{return} 0;
+00096 \}
+\end{DoxyCode}
+\index{main.\-c@{main.\-c}!show\-\_\-month\-\_\-name@{show\-\_\-month\-\_\-name}}
+\index{show\-\_\-month\-\_\-name@{show\-\_\-month\-\_\-name}!main.c@{main.\-c}}
+\paragraph[{show\-\_\-month\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}void show\-\_\-month\-\_\-name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{month}
+\end{DoxyParamCaption}
+)}\label{main_8c_a4ddd9421d6fe9fa0be8c4ac4e7b6907c}
+
+
+文字列monthをprintfで表示する 
+
+
+\begin{DoxyParams}{引数}
+{\em month} & 表示する文字列 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{日付}
+2016/06/08 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+Toru Tamaki 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00018                                   \{
+00019   printf(\textcolor{stringliteral}{"%s\(\backslash\)n"}, month);
+00020 \}
+\end{DoxyCode}

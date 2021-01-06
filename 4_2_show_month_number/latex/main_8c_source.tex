@@ -1,0 +1,93 @@
+\subsection{main.\-c}
+
+\begin{DoxyCode}
+00001 \textcolor{comment}{/**  @file main.c}
+00002 \textcolor{comment}{ *   @brief  月の番号を表示する}
+00003 \textcolor{comment}{ *   @date   2016/11/24}
+00004 \textcolor{comment}{ *   @author 佐伯雄飛}
+00005 \textcolor{comment}{ *   @author B162392}
+00006 \textcolor{comment}{ */}
+00007 
+00008 \textcolor{preprocessor}{#include <stdio.h>}
+00009 \textcolor{preprocessor}{#include <string.h>}  \textcolor{comment}{// strncmp}
+00010 \textcolor{preprocessor}{#include <stdbool.h>}
+00011 \textcolor{comment}{}
+00012 \textcolor{comment}{/** @fn int main(void)}
+00013 \textcolor{comment}{ *  @brief 月の番号を表示する}
+00014 \textcolor{comment}{ *}
+00015 \textcolor{comment}{ *  入力：}
+00016 \textcolor{comment}{ *  - 標準入力から，文字列（月の名前）が与えられる}
+00017 \textcolor{comment}{ *  - 文字列が複数与えられる場合，空白で区切られている．}
+00018 \textcolor{comment}{ *}
+00019 \textcolor{comment}{ *  出力：}
+00020 \textcolor{comment}{ *  - 与えられた月名の文字列に対応する月の数値を表示する（表示後は改行する）．}
+00021 \textcolor{comment}{ *  - 月名の文字列が複数与えられている場合，上記の処理を繰り返す．}
+00022 \textcolor{comment}{ *  - "end"という文字列が入力された場合，その時点で終了する．}
+00023 \textcolor{comment}{ *  - 月名ではない文字列が入力された場合，何も表示しない．}
+00024 \textcolor{comment}{ *}
+00025 \textcolor{comment}{ *  入力例：}
+00026 \textcolor{comment}{\(\backslash\)verbatim}
+00027 \textcolor{comment}{January March Avril December}
+00028 \textcolor{comment}{\(\backslash\)endverbatim}
+00029 \textcolor{comment}{  *  出力例：}
+00030 \textcolor{comment}{\(\backslash\)verbatim}
+00031 \textcolor{comment}{1}
+00032 \textcolor{comment}{3}
+00033 \textcolor{comment}{12}
+00034 \textcolor{comment}{\(\backslash\)endverbatim}
+00035 \textcolor{comment}{  *  入力例：}
+00036 \textcolor{comment}{\(\backslash\)verbatim}
+00037 \textcolor{comment}{January end March Avril December}
+00038 \textcolor{comment}{\(\backslash\)endverbatim}
+00039 \textcolor{comment}{  *  出力例：}
+00040 \textcolor{comment}{\(\backslash\)verbatim}
+00041 \textcolor{comment}{1}
+00042 \textcolor{comment}{\(\backslash\)endverbatim}
+00043 \textcolor{comment}{ *  @date   2016/10/02}
+00044 \textcolor{comment}{ *  @author 佐伯雄飛，B162392}
+00045 \textcolor{comment}{ */}
+00046 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{void}) \{
+00047   \textcolor{keywordtype}{char}* year[] = \{\textcolor{stringliteral}{"January"},
+00048                   \textcolor{stringliteral}{"February"},
+00049                   \textcolor{stringliteral}{"March"},
+00050                   \textcolor{stringliteral}{"April"},
+00051                   \textcolor{stringliteral}{"May"},
+00052                   \textcolor{stringliteral}{"June"},
+00053                   \textcolor{stringliteral}{"July"},
+00054                   \textcolor{stringliteral}{"August"},
+00055                   \textcolor{stringliteral}{"September"},
+00056                   \textcolor{stringliteral}{"October"},
+00057                   \textcolor{stringliteral}{"November"},
+00058                   \textcolor{stringliteral}{"December"}\};
+00059 
+00060   \textcolor{keywordtype}{int} len = 100;
+00061   \textcolor{keywordtype}{char} input[100];
+00062   \textcolor{keywordtype}{bool} is\_end = \textcolor{keyword}{false};
+00063 
+00064   \textcolor{keywordflow}{while} (!is\_end) \{
+00065     \textcolor{keywordtype}{int} return\_value = scanf(\textcolor{stringliteral}{"%99s"}, input);
+00066 
+00067     \textcolor{keywordflow}{if} (return\_value == 0 ||    \textcolor{comment}{// if input didn't match to %s}
+00068         return\_value == EOF) \{  \textcolor{comment}{// if there are no input}
+00069       \textcolor{keywordflow}{break};                    \textcolor{comment}{// break while}
+00070     \}
+00071 
+00072     \textcolor{comment}{// if input is "end"}
+00073     \textcolor{keywordflow}{if} (strncmp(input, \textcolor{stringliteral}{"end"}, len) == 0) \{
+00074       \textcolor{keywordflow}{break};  \textcolor{comment}{// break while}
+00075     \}
+00076 
+00077     \textcolor{keywordtype}{char} s1[100];
+00078 
+00079     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} month = 0; month < 12; month++) \{
+00080       \textcolor{keywordflow}{if} (strncmp(input, year[month], 4) == 0) \{
+00081         printf(\textcolor{stringliteral}{"%d\(\backslash\)n"}, month + 1);
+00082 
+00083         \textcolor{comment}{// inputとyear[month]が等しいかどうかを判定してください}
+00084       \}
+00085     \}
+00086   \}
+00087 
+00088   \textcolor{keywordflow}{return} 0;
+00089 \}
+\end{DoxyCode}

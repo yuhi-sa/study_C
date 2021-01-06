@@ -1,0 +1,153 @@
+\subsection{main.\-c ファイル}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+各講義の平均点数の計算  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+\subsubsection*{関数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 各講義の平均点数の計算 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{詳解}
+各講義の平均点数の計算 \begin{DoxyDate}{日付}
+2017/1/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛 
+
+B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} に定義があります。
+
+
+
+\subsubsection{関数詳解}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+各講義の平均点数の計算 
+
+入力：
+\begin{DoxyItemize}
+\item 標準入力には，まず学生数が与えられる
+\item 続いて講義数が与えられる．それに引き続いて， 空白で区切られた講義コード（6桁）が講義数分与えられる．
+\item 続いて「学生番号（6桁），講義コード，素点（100点満点）」が （空白で区切られて）与えられる． このフォーマットは，一人の学生について異なる講義コードが連続しており， その学生の成績がすべて与えられたら，別の学生の成績が与えられる．
+\item 仮定：すべての学生は同じ講義を受講していると仮定する （入力はこの仮定を満たしている）
+\end{DoxyItemize}
+
+出力：
+\begin{DoxyItemize}
+\item 各講義について，点数の平均を計算する．
+\item 出力は，講義コード（\%06d），平均点数（\%.2f）の順に， 空白で区切り，改行する．
+\end{DoxyItemize}
+
+入力例（途中省略）： \begin{DoxyVerb}150
+20
+030323 044417 112271 166084 230334 288383 304507 343261 375762 408164 415311
+417011 467643 486000 518187 618065 674215 712181 755421 883186
+002487 030323 74
+002487 044417 41
+002487 112271 64
+002487 166084 38
+002487 230334 72
+002487 288383 82
+002487 304507 67
+...
+886870 417011 85
+886870 467643 61
+886870 486000 75
+886870 518187 88
+886870 618065 76
+886870 674215 73
+886870 712181 69
+886870 755421 90
+886870 883186 83
+\end{DoxyVerb}
+ 出力例（途中省略）： \begin{DoxyVerb}030323 74.45
+044417 73.74
+112271 74.32
+166084 73.37
+230334 74.24
+288383 75.61
+304507 72.55
+343261 74.65
+375762 73.11
+408164 75.78
+415311 73.08
+417011 75.40
+467643 75.54
+486000 73.74
+518187 74.99
+618065 72.73
+674215 74.75
+712181 73.20
+755421 73.99
+883186 75.33
+\end{DoxyVerb}
+ \begin{DoxyDate}{日付}
+2017/1/10 
+\end{DoxyDate}
+\begin{DoxyAuthor}{著者}
+佐伯雄飛，\-B162392 
+\end{DoxyAuthor}
+
+
+ \hyperlink{main_8c_source}{main.\-c} の  行目に定義があります。
+
+
+\begin{DoxyCode}
+00079                                  \{
+00080   \textcolor{keywordtype}{int} num\_students;
+00081   scanf(\textcolor{stringliteral}{"%d"}, &num\_students);
+00082 
+00083   \textcolor{keywordtype}{int} num\_class;
+00084   scanf(\textcolor{stringliteral}{"%d"}, &num\_class);
+00085 
+00086   \textcolor{keywordtype}{int} class\_codes[num\_class];
+00087   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_class; i++) \{
+00088     scanf(\textcolor{stringliteral}{"%d"}, &class\_codes[i]);
+00089   \}
+00090 
+00091   \textcolor{keywordtype}{int} student\_id, class\_code, score;
+00092 
+00093   \textcolor{keywordtype}{int} \textcolor{keyword}{class}[num\_class];
+00094 
+00095   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} c = 0; c < num\_class; c++) \{
+00096     \textcolor{keyword}{class}[c] = 0;
+00097   \}
+00098 
+00099   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < num\_students; s++) \{
+00100     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} c = 0; c < num\_class; c++) \{
+00101       scanf(\textcolor{stringliteral}{"%d"}, &student\_id);
+00102       scanf(\textcolor{stringliteral}{"%d"}, &class\_code);
+00103       scanf(\textcolor{stringliteral}{"%d"}, &score);
+00104       \textcolor{keyword}{class}[c] += score;
+00105     \}
+00106   \}
+00107 
+00108   \textcolor{keywordtype}{float} class2[num\_class];
+00109   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_class; i++) \{
+00110     class2[i] = (float)\textcolor{keyword}{class}[i] / num\_students;
+00111   \}
+00112 
+00113   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_class; i++) \{
+00114     printf(\textcolor{stringliteral}{"%06d %.2f\(\backslash\)n"}, class\_codes[i], class2[i]);
+00115   \}
+00116 
+00117   \textcolor{keywordflow}{return} 0;
+00118 \}
+\end{DoxyCode}
