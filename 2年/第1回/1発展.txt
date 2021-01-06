@@ -1,0 +1,63 @@
+プログラミング演習２発展レポート課題
+B162392 佐伯 雄飛
+
+（プログラム）
+     1	#include<stdio.h>
+     2	#include <stdlib.h>
+     3	#include<string.h>
+     4	 
+     5	int main(void){
+     6	  int i;
+     7	  char str[100];
+     8	  int count=0;
+     9	  int count2=0;
+    10	  int max=0;
+    11	  char ch;
+    12	 FILE *fp;	
+    13	
+    14		if ((fp = fopen("a.txt", "r")) == NULL) {
+    15			exit;
+    16		}
+    17		
+    18		
+    19		while (fgets(str, 100, fp) != NULL) {
+    20	      count2++;
+    21	
+    22		 for(i=0;i<=strlen(str);i++){
+    23	   char ss = str[i];
+    24	  
+    25	         if(ss==','){
+    26	               count++;
+    27	                     }
+    28	                                }
+    29	                      
+    30	         if(count >= max){
+    31	                max = count;
+    32	                         }
+    33	                      
+    34	            count=0;
+    35	             
+    36	                                     	}
+    37		
+    38		fclose(fp);	
+    39	 
+    40	   printf("最大カルム数＝%d\nレコード数＝%d\n",max,count2);
+    41	 
+    42		return 0;
+    43	}
+（説明）
+ここではCSV形式のﾌｧｲﾙ名をa.txtとした。
+１２行目でa.txtというファイルをr(読み出し専用)で開き、
+１５行目のwhile文の中で１行読み込みのfgets関数を用いて
+a.txtの中身をstrに写している
+２１−２５行目のfor文を用いてstrの中身を１文字づつssに移す途中で、
+if文で,が移された時のみ、countに1ずつ加算する。
+countに加算された数が,の数、つまりその行のカラム数となる。
+fgetsは一行ごとに読み込まれるので、一行読み込まれるごとに３４行目でcountを０に戻し、かつ
+３１行目で最大をmaxカルム数を記録し続ける。
+また、fgetsが一行ごとに読み込むということはwhile文がループした数＝レコード数ということになる。よって２０行目のcount2++;でレコード数がわかる。
+（実行結果）
+b162392@libw31-080:/fs/home/b162392$ ./a.out
+最大カルム数＝6
+レコード数＝5
+b162392@libw31-080:/fs/home/b162392$

@@ -1,0 +1,22 @@
+プログラミング序説　第２回レポート課題　発展課題
+B162392
+
+実行結果
+b162392@libw31-051:/fs/home/b162392$ ./a.out
+Faculty of Engineering,
+   Hiroshima University
+b162392@libw31-051:/fs/home/b162392$ 
+
+1　　　#include<stdio.h>
+2
+3　　　main()
+4　　　{
+5　　　	　　　printf("Faculty of Engineering,\n   Hiroshima University\n");
+6　　　}
+
+一行目はコンパイラに、standard input/output libraryを読み込むように指示している。また、拡張子の.hはheaderを意味する。
+二行目の空白はわかりやすさを意図している。
+三行目のmain()はプログラムが始まることを意味している。
+四行目と六行目の｛｝はセットでかたまりを表す。
+五行目のprintfは文字力出力関数であり、（）の中を表示するという指示、\nは改行を指示、;は文の終わりを表している。
+

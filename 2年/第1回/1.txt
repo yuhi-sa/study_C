@@ -1,0 +1,125 @@
+プログラミング演習２レポート課題（第１回）
+B162392 佐伯 雄飛
+
+課題１
+（プログラム）
+     1	#include<stdio.h>
+     2	#include <stdlib.h>
+     3	#include<string.h>
+     4	 
+     5	int main(void){
+     6	  int i;
+     7	  char str[100];
+     8	 FILE *fp;	
+     9	
+    10		if ((fp = fopen("a.txt", "r")) == NULL) {
+    11			exit;
+    12		}
+    13		while (fgets(str, 100, fp) != NULL) {
+    14	
+    15		}
+    16		fclose(fp);	
+    17	 
+    18	  for(i=0;i<=strlen(str);i++){
+    19	    
+    20	    if(str[i]>=97&&str[i]<=122)
+    21	      str[i]=str[i]-32;
+    22	  }
+    23	 
+    24	 FILE *file;
+    25		file = fopen("b.txt","w");
+    26		fprintf(file,"%s\n", str);
+    27		fclose(file);
+    28		return 0;
+    29	}
+    30	
+（説明）
+７−１０行目でa.txtというファイルをr(読み出し専用)で開き、
+１３行目のwhile文の中で１行読み込みのfgets関数を用いて
+a.txtの中身をstrに写している
+アルファベットの小文字と大文字では、１０進数で３２の差があるので
+２１行目で３２引くことにより、小文字を大文字に変換している
+２４、２５行目でb.txtというファイルをw(書き込み専用)で開き、
+２６行目で先ほど大文字に変換したstrをb.txtに写している
+（実行結果）
+b162392@libw31-080:/fs/home/b162392$ ./a.out
+b162392@libw31-080:/fs/home/b162392$ 
+
+課題２
+（プログラム）
+     1	#include<stdio.h>
+     2	#include <stdlib.h>
+     3	#include<string.h>
+     4	 
+     5	int main(void){
+     6	  int i;
+     7	  char str[100];
+     8	  int count=0;
+     9	  char ch;
+    10	 FILE *fp;	
+    11	
+    12		if ((fp = fopen("a.txt", "r")) == NULL) {
+    13			exit;
+    14		}
+    15		while (fgets(str, 100, fp) != NULL) {
+    16	
+    17		}
+    18		fclose(fp);	
+    19		
+    20		
+    21		 for(i=0;i<=strlen(str);i++){
+    22	   char ss = str[i];
+    23	   if(ss=='f'){
+    24	   count++;
+    25	   }
+    26	 
+    27	 }
+    28	 
+    29	   printf("%d\n",count);
+    30	 
+    31		return 0;
+    32	}
+（説明）
+１２行目でa.txtというファイルをr(読み出し専用)で開き、
+１５行目のwhile文の中で１行読み込みのfgets関数を用いて
+a.txtの中身をstrに写している
+２１−２５行目のfor文を用いてstrの中身を１文字づつssに移す途中で、
+if文でfが移された時のみ、countに1ずつ加算する。
+結果として、countに加算された数がa.txtに含まれるfの数となる。
+（実行結果）
+b162392@libw31-080:/fs/home/b162392$ ./a.out
+5
+b162392@libw31-080:/fs/home/b162392$ 
+
+課題３
+（プログラム）
+   　1	#include<stdio.h>
+     2	#include <stdlib.h>
+     3	#include<string.h>
+     4	 
+     5	int main(void){
+     6	  int i;
+     7	  char str[100];
+     8	 FILE *fp;	
+     9	
+    10		if ((fp = fopen("a.txt", "r")) == NULL) {
+    11			exit;
+    12		}
+    13		while (fgets(str, 100, fp) != NULL) {
+    14	
+    15		}
+    16		fclose(fp);	
+    17	 
+    18	   printf("%d\n",strlen(str)-1);
+    19	 
+    20		return 0;
+    21	}
+（説明）
+１０行目でa.txtというファイルをr(読み出し専用)で開き、
+１３行目のwhile文の中で１行読み込みのfgets関数を用いて
+a.txtの中身をstrに写している
+strとa.txtの文字数は同じであるから、
+strの文字数を文字列処理関数の文字列を返すstrlenで数えて、
+最後にNULL文字分の１を引き、printfで表示している。
+
+

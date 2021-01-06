@@ -1,0 +1,180 @@
+プログラミング演習２レポート課題（第6回）
+B162392 佐伯 雄飛
+
+課題１
+（プログラム）
+     1	#include<stdio.h>
+     2	#include<stdlib.h>
+     3	
+     4	typedef struct node{
+     5	  int num;
+     6	  struct node *next;
+     7	  }NODE;
+     8	  
+     9	NODE *newNODE(){
+    10	  NODE *newNode;
+    11	  newNode = (NODE*)malloc(sizeof(NODE));
+    12	  if(newNode == NULL){
+    13	    printf("memory cannot alloc!\n");
+    14	    exit(0);
+    15	    }
+    16	    return newNode;
+    17	    }
+    18	
+    19	NODE *insertHead(NODE *list, int addedNum){
+    20	  NODE *newNode;
+    21	    newNode = newNODE();
+    22	  newNode->num = addedNum;
+    23	  
+    24	  newNode->next = list;
+    25	  list = newNode;
+    26	    
+    27	  return list;
+    28	}
+    29	
+    30	void showList_loop(NODE*list){
+    31	  NODE *p;
+    32	  p = list;
+    33	  
+    34	  if(p == NULL){
+    35	    printf("The list is NULL.\n");
+    36	    }
+    37	    else{
+    38	      while(p != NULL){
+    39	        printf("%d ", p->num);
+    40	        p = p->next;
+    41	      }
+    42	  printf("\n");
+    43	  }
+    44	  }
+    45	
+    46	int main(int argv, char *argc[]){
+    47	  NODE *list;
+    48	 FILE *fp;
+    49	fp = fopen("a.txt","r");
+    50	int a;
+    51	    
+    52	if(fp == NULL){
+    53	    printf("File open error¥n");
+    54	    return 1;
+    55	}
+    56	    while(fscanf(fp, "%d",&a) == 1){
+    57	list = insertHead(list, a);
+    58	}
+    59	    
+    60	    showList_loop(list);
+    61	  return 0;
+    62	  } 
+（説明)
+4行目から7行目までで単方向リスト構造の構造体による定義
+9行目から17行目までで要素を生成するための処理を関数化
+19行目から28行目までで、新しい要素の作成、新しい要素の次の要素を先頭要素にする、
+先頭要素を示すポインタ変数の値を新しい要素のアドレスにしている
+30行目から44行目まででループ処理を行なっている
+47行目から49行目まででa.txtを読み込み専用で開いている
+52行目から55行目までは、ファイルの中身がなかった時の処理
+56行目から57行目まででa.txtからコピーした値をinsertHead関数に与えている
+60行目から62行目までで処理した値を表示させている
+(実行結果)
+saekiyuuhi-no-MacBook-Air:Desktop saikiyuhi$ ./a.out
+2 2 2 2 2 2 2 2 2 2 12 12 123 23 11 12 
+
+課題２
+（プログラム）
+6-2-1.h
+     1	#include<stdio.h>
+     2	#include<stdlib.h>
+     3	
+     4	typedef struct node{
+     5	  int num;
+     6	  struct node *next;
+     7	  }NODE;
+     8	  
+     9	NODE *newNODE();
+    10	NODE *insertHead(NODE *list, int addedNum);
+    11	void showList_loop(NODE*list);
+6-2-2.c
+     1	#include"6-2-1.h"
+     2	
+     3	NODE *newNODE(){
+     4	  NODE *newNode;
+     5	  newNode = (NODE*)malloc(sizeof(NODE));
+     6	  if(newNode == NULL){
+     7	    printf("memory cannot alloc!\n");
+     8	    exit(0);
+     9	    }
+    10	    return newNode;
+    11	    }
+    12	
+    13	
+    14	NODE *insertHead(NODE *list, int addedNum){
+    15	    NODE *newNode;
+    16	    newNode = newNODE();
+    17	    newNode->num = addedNum;
+    18	    
+    19	    newNode->next = list;
+    20	    list = newNode;
+    21	    
+    22	    return list;
+    23	}
+    24	    
+    25	
+    26	void showList_loop(NODE*list){
+    27	    NODE *p;
+    28	    p = list;
+    29	    
+    30	    if(p == NULL){
+    31	        printf("The list is NULL.\n");
+    32	    }
+    33	    else{
+    34	        while(p != NULL){
+    35	            printf("%d ", p->num);
+    36	            p = p->next;
+    37	        }
+    38	        printf("\n");
+    39	    }
+    40	}
+6-2-3.c
+     1	#include"6-2-1.h"
+     2	
+     3	int main(int argv, char *argc[]){
+     4	  NODE *list;
+     5	 FILE *fp;
+     6	fp = fopen("a.txt","r");
+     7	int a;
+     8	    
+     9	if(fp == NULL){
+    10	    printf("File open error¥n");
+    11	    return 1;
+    12	}
+    13	    while(fscanf(fp, "%d",&a) == 1){
+    14	list = insertHead(list, a);
+    15	}
+    16	    
+    17	    showList_loop(list);
+    18	  return 0;
+    19	  }
+（説明）
+課題1で作成したプログラムを3つに分割した
+
+
+課題３
+（プログラム）
+     1	#include<stdio.h>
+     2	#include<string.h>
+     3	int main(){
+     4	        char s1[10] = "ABC";
+     5	        char s2[] = "def";
+     6	        
+     7	          strcat(s1,s2);
+     8	          printf("%s",s1);
+     9	    printf("¥n");
+    10	return 0;
+    11	}
+
+（説明）
+7行目でs1に与えられている要素の最後に、s2の要素を代入している
+(実行結果)
+saekiyuuhi-no-MacBook-Air:Desktop saikiyuhi$ ./a.out
+ABCdef
+

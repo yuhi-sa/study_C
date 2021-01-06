@@ -1,0 +1,95 @@
+プログラミング演習２第4回発展レポート課題
+B162392 佐伯 雄飛
+
+（プログラム）
+     1	#include<stdio.h>
+     2	#define N 10
+     3	
+     4	void quick_sort(int *ary, int begin, int end){
+     5	int i, j, work, pivot;
+     6	pivot = ary[(begin + end)/2];
+     7	i=begin;
+     8	j=end;
+     9	while(1){
+    10	  while(ary[i] < pivot) ++i;
+    11	  while(ary[j] > pivot) --j;
+    12	  if(i >= j)break;
+    13	  work = ary[i];
+    14	  ary[i] = ary[j];
+    15	  ary[j] = work;
+    16	  i++;
+    17	  j--;
+    18	}
+    19	if(begin <i-1)quick_sort(ary, begin, i-1);
+    20	if(j+1<end)quick_sort(ary, j+1, end );
+    21	}
+    22	
+    23	int rbinsearch(int *ary, int head, int tail, int key){
+    24	  int mid = (head + tail) /2;
+    25	  if(head >tail) return -1;
+    26	  if(key < ary[mid])
+    27	        return rbinsearch(ary, head, mid-1, key);
+    28	  else if(key > ary[mid])
+    29	    return rbinsearch(ary, mid+1, tail, key);
+    30	  else return mid;
+    31	}
+    32	
+    33	
+    34	int main(){
+    35	  FILE *fp;
+    36	  int ary[N];
+    37	  int i;
+    38	  fp=fopen("c.txt", "r");
+    39	  for(i=0; i<N; i++)
+    40	   fscanf(fp, "%d", &ary[i]);
+    41	   fclose(fp);
+    42	 
+    43	   quick_sort(ary, 0, N-1);
+    44	 
+    45	  
+    46	    int x, idx;
+    47	    
+    48	    printf("Input number: ");
+    49	    scanf("%d" , &x);
+    50	    idx = rbinsearch(ary, 0, N-1, x);
+    51	    if(idx != -1)
+    52	      printf("%dは添字%d番目に見つかりました。\n", x, idx);
+    53	    else
+    54	      printf("%dは見つかりませんでした。\n", x);
+    55	      return 0;
+    56	}
+    57	
+
+
+（説明）
+４行目から21行目はクイックソートのプログラム
+pivotにary[(begin + end)/2]で中央値を入れてそれを基準とし、
+基準以下の要素と基準以上の要素とに分割、分割された２つの要素群について、更にその中で分割
+それを繰り返して配列を順番通りに並べ替える
+23行目から31行目はバイナリサーチのプログラム
+配列の中央にある要素をmidに与える
+もし目的の値keyとmidが等しければ、その位置を返す
+もし目的の値keyとが異なっていれば、目的の値と
+　　その位置にある値との大小関係を元に、
+　　配列の前半あるいは後半だけを調べるようにheadまたはtailを変更して
+　　徐々に要素を半減させていき
+目的の値が存在するかどうかを調べている
+存在した場合は何番目に存在したかを返し、存在しなかった場合は-1を返している。
+35行目から41行目はfopenを用いて読み込み専用でファイルc.txtを開き
+fscanfを用いて配列aryにc.txtから読み取った値を与えている
+その後、読み取った値を先ほど定義したクイックソートとバイナリサーチの関数にあたえてい
+る。
+
+
+（実行結果）
+b162392@imc2e-022:/fs/home/b162392$ ./a.out
+Input number: 2
+2は添字1番目に見つかりました。
+b162392@imc2e-022:/fs/home/b162392$ ./a.out
+Input number: 3232
+3232は添字9番目に見つかりました。
+b162392@imc2e-022:/fs/home/b162392$ ./a.out
+Input number: 222
+222は見つかりませんでした。
+
+

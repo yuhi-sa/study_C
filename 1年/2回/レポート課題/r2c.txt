@@ -1,0 +1,13 @@
+プログラミング序説　第２回レポート課題
+B162392　佐伯雄飛
+c　
+実行例３が出力されコンパイルできなかった理由
+４行目の最後に;がなく４行目のprintfが５行目にまでかかってしまったから。
+
+実行結果
+b162392@imc2e-043:/fs/home/b162392$ ./a.out
+Discover the joy of learning.
+Hiroshima Univ.
+Japan
+b162392@imc2e-043:/fs/home/b162392$ 
+

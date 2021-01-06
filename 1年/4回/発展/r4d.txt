@@ -1,0 +1,77 @@
+第４回レポート発展課題
+B162392 佐伯雄飛
+d
+実行結果
+b162392@libc1c-050:/fs/home/b162392$ ./a.out
+2016/1/1 isTuesday
+
+
+プログラミングの説明
+#include<stdio.h>
+main()
+{
+	int y=2016;
+	int m=1;
+	int d=1;
+	int q;
+	int p;
+	int r;
+	int s;
+	int t;
+	int w;
+	q=y/4;
+	p=y/100;
+	r=y/400;
+	s=13*m+8;
+	t=s/5;
+	w=q+p+r+t+d;
+	
+	if(w%7==0)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Sunday");
+	}
+	else if(w%7==1)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Monday");
+	}
+	else if(w%7==2)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Tuesday");
+	}
+	else if(w%7==3)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Wednesday");
+	}
+	else if(w%7==4)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Thursday");
+	}
+	else if(w%7==5)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Fryday");
+	}
+	else if(w%7==6)
+	{
+	printf("%d/%d/%d is",y,m,d);
+	printf("Saturday");
+	}
+	printf("\n");
+	
+}
+
+qをyを4で割った値、pをyを100で割った値、rをyを400で割った値、sを13とmをかけた値に8を足した値、tをsを5で割った値、wをqとpとrとtとdを足した値として
+最初のif文はwを7で割った余りが0である時、printfを実行し、y/m/disSundayを表示
+次のelseif文はwを7で割った余りが1である時、printfを実行し、y/m/disMondayを表示
+2つめのelseif文はwを7で割った余りが2である時、printfを実行し、y/m/disTuesdayを表示
+3つめのelseif文はwを7で割った余りが3である時、printfを実行し、y/m/disWednesdayを表示
+4つめのelseif文はwを7で割った余りが4である時、printfを実行し、y/m/disThursdayを表示
+5つめのelseif文はwを7で割った余りが5である時、printfを実行し、y/m/disFrydayを表示
+6つめのelseif文はwを7で割った余りが6である時、printfを実行し、y/m/disSaturdayを表示
+
+

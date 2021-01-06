@@ -1,0 +1,81 @@
+レポート課題発展
+B162392　佐伯雄飛
+4
+実行結果
+b162392@libc1c-046:/fs/home/b162392$ ./a.out
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+人数:10
+最高点:2
+最低点:1
+平均点:5.5000
+分散:8.2500
+
+
+プログラミングの説明
+#include<stdio.h>
+main()
+{
+	int a[10],n,o,max,sum,min;
+	float ave,var,sum2;
+
+	for(n=0;n<=9;n++)
+	{
+	scanf("%d",&a[n]);
+	if(a[n]<0)
+		break;
+	}
+
+	sum = 0;
+	max = a[0];
+	min = a[0];
+
+	for(o=0;o<=n-1;o++)
+	{
+
+	if(max<=a[0])
+	{
+	max = a[o];
+	}
+
+	if(min>= a[o])
+	{
+	min = a[o];
+	}
+
+	sum +=a[o];
+	}
+
+	ave = sum/(float)n;
+	sum2=0;
+	
+	for(o=0; o<=n-1;o++)
+	{
+	sum2 +=(a[o]-ave)*(a[o]-ave);
+	}
+	var =sum2/(float)n;
+
+	printf("人数:%d\n",n);
+	printf("最高点:%d\n",max);
+	printf("最低点:%d\n",min);
+	printf("平均点:%.4f\n",ave);
+	printf("分散:%.4f\n",var);
+}
+
+まず、intで a[10],n,o,max,sum,minが整数型であることを宣言、floatでave,var,sum2が実数型であることを宣言
+最初のfor文はnが9以下で0から1ずつ増やしていくという条件で、scanfを用いて入力データをa[n]に格納して、a[n]が0以下になれば、繰り返しの実行を中断する
+次にsum = 0、max = a[0]、min = a[0]を宣言する。
+2番目のfor文はoがn-1以下で0からIずつ増やしていくという条件で,maxがa[0]以下になれば、max = a[o]とする,minがa[0]以上になればmin = a[o]とする
+sumにはa[o]の値を足して代入
+(float)でnの値を実数にして平均aveをsum割るnで求める
+3番目のfor文はoがn-1以下で0からIずつ増やしていくという条件で、sum2に(a[o]-ave)かける(a[o]-ave)を足して代入する
+(float)でnの値を実数にして分散varをsum2割るnで求める
+最後にprintfを用いてそれぞれの値を表示する。

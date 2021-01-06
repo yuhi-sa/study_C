@@ -1,0 +1,33 @@
+プログラミング演習２第3回発展レポート課題
+B162392 佐伯 雄飛
+
+（プログラム）
+     1	#include<stdio.h>
+     2	int main(void){
+     3	int A=0;
+     4	
+     5	int Fib1(int n){
+     6	
+     7	  if(n < 2)
+     8	      return n;
+     9	  else
+    10	      A++;
+    11	      return Fib1(n-2) + Fib1(n-1);     
+    12	  }
+    13	  
+    14	  int n;
+    15	  scanf("%d",&n);
+    16	 Fib1(n);
+    17	  printf("A(%d)=%d\n",n,A);
+    18	  
+    19	  }
+
+（説明）
+今回、n>1であるから加算計算自体はelseの中でしか行われない
+つまり、elseの中が実行される回数を考えればいい。
+
+（実行結果）
+b162392@libc1c-009:/fs/home/b162392$ ./a.out
+12
+A(12)=232
+

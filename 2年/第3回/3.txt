@@ -1,0 +1,202 @@
+プログラミング演習２レポート課題（第3回）
+B162392 佐伯 雄飛
+
+課題１
+（プログラム）
+3-0-1.c
+     1	#include<stdio.h>
+     2	int main(void){
+     3	
+     4	int Fib1(int n){
+     5	  if(n < 2)
+     6	      return n;
+     7	  else
+     8	      return Fib1(n-2) + Fib1(n-1);     
+     9	  }
+    10	  
+    11	  int n;
+    12	  scanf("%d",&n);
+    13	 
+    14	  printf("%d\n",Fib1(n));
+    15	  }
+3-0-2.c
+  1	#include<stdio.h>
+     2	int main(void){
+     3	
+     4	int Fib2(int n){
+     5	  int i;
+     6	  int F[1000];
+     7	  F[0] = 0; F[1] = 1;
+     8	  for( i = 2; i <=n ; i++){
+     9	    F[i] = F[i-2] + F[i-1];
+    10	    }
+    11	  printf("%d\n",F[n]);  
+    12	  return F[n];
+    13	  }
+    14	
+    15	
+    16	int n;
+    17	  scanf("%d",&n);
+    18	  Fib2(n);
+    19	
+    20	}
+    
+（説明）
+timeコマンドはコマンド・プログラムを引数としてとり、引数として指定したコマンド・プログラムが実行されるのにどれだけの時間がかかったか出力するコマンド。
+realはプログラムの呼び出しから終了までにかかった実時間(秒)
+userはプログラム自体の処理時間(秒)
+sysはプログラムを処理するために、OSが処理下時間(秒)
+を表している
+（実行結果）
+b162392@libc1c-009:/fs/home/b162392$ gcc 3-0-1.c
+b162392@libc1c-009:/fs/home/b162392$ time ./a.out 
+45
+1134903170
+
+real	0m33.895s
+user	0m25.416s
+sys	0m0.000s
+b162392@libc1c-009:/fs/home/b162392$ gcc 3-0-2.c
+b162392@libc1c-009:/fs/home/b162392$ time ./a.out 
+45
+1134903170
+
+real	0m1.612s
+user	0m0.000s
+sys	0m0.000s
+b162392@libc1c-009:/fs/home/b162392$ 
+
+
+
+課題２
+（プログラム）
+     1	#include<stdio.h>
+     2	int main(void){
+     3	
+     4	int Fib1(int n){
+     5	  if(n < 2)
+     6	      return n;
+     7	  else
+     8	      return Fib1(n-2) + Fib1(n-1);     
+     9	  }
+    10	  
+    11	  int n;
+    12	  scanf("%d",&n);
+    13	 
+    14	  printf("%d\n",Fib1(n));
+    15	  }   
+（説明）
+12行目のscanfの文章で標準入力からnに5が代入される。14行目のFib1(5)にて
+4行目からのFib1()関数が始まる
+n=5であるからFib1(3)+Fib1(4)がreturnで返されるがここで
+Fib1(3)でまた4行目のFib1()関数が始まり
+Fib1(4)でまた4行目のFib1()関数が始まる
+つづいて
+Fib1(3)ではFib(1)+Fib(2)
+Fib1(4)ではFib(2)+Fib(1)がかえされる。
+Fib(2)ではまたFib1()関数が始まり　Fib(1)+Fib(0)が返される。
+Fib(0)とFib(1)はif(n<2)にてそれぞれ0と1が返される。
+
+
+（実行結果）
+b162392@libc1c-009:/fs/home/b162392$ ./a.out
+5
+5
+
+課題３
+（プログラム）
+     1	#include<stdio.h>
+     2	
+     3	int Fib2(int n){
+     4	  int f0=0, f1=1, f2;
+     5	
+     6	  while(f1<n) {   
+     7	    f2 = f1 + f0;
+     8	    f0 = f1;
+     9	    f1 = f2;
+    10	    }
+    11	    
+    12	    
+    13	    printf("%d\n",f1);
+    14	    
+    15	    return 0;
+    16	}
+    17	
+    18	
+    19	int main(void){
+    20	int n;
+    21	   scanf("%d",&n);
+    22	    Fib2(n);
+    23	    return 0;
+    24	}
+
+（説明）
+最初の形のFib2()では配列F[]それぞれに値を再帰関数にて自分自身を参照して
+代入していたが、このプログラムでは一つのループが終わるたびにf0,f1,f2の値を更新することでフィボナッチ数列を計算しているので計算領域を省略している。
+（実行結果）
+b162392@libc1c-009:/fs/home/b162392$ ./a.out
+111
+144
+
+課題4
+（プログラミング）
+     1	#include<stdio.h>
+     2	#include<stdlib.h>
+     3	#include<string.h>
+     4	 
+     5	int main(void){
+     6	  int i,n=0,j,tmp,a;
+     7	  int str[10000];
+     8	  FILE *fp;	
+     9	
+    10		if ((fp = fopen("a.txt", "r")) == NULL) {
+    11		
+    12			exit;
+    13		}
+    14	
+    15	while (fscanf (fp,"%d",&a)==1)	{
+    16			str[n]=a;
+    17			n++;
+    18			                    }
+    19	
+    20		fclose(fp);	
+    21	
+    22	for(i =1;i<n;i++){
+    23	for(j = n-1; j >=i; j--){
+    24	
+    25	    if(str[j-1] >str[j]){
+    26	    tmp = str[j-1];
+    27	    str[j-1] = str[j];
+    28	    str[j] = tmp;
+    29	                      }
+    30	
+    31	                        }
+    32	                        }
+    33	                        
+    34	for(i = 0; i < n-1; i++){
+    35	printf("%d\n",str[i]);
+    36	            }
+    37	            
+    38	      }
+    39	  
+
+（説明）
+7行目から13行目まででファイルa.txtを読み取り専用で開いている。
+15行目から18行目まででfscanfを用いてa.txt内の値を整数のかたちで一行ずつ読み取り
+配列strに与えている。20行目で開いたa.txtを閉じている
+22行目のfor文で行全体のループを行い
+23行目のfor文で25行目から28行目までのif文をもちいて大小を比較してtmpを介して値の入れ替えを行うプログラムのループを行っている。
+
+（実行結果）
+b162392@libc1c-009:/fs/home/b162392$ ./a.out
+3
+33
+44
+124
+345
+542
+78234
+82342
+245234
+891011
+

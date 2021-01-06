@@ -1,0 +1,191 @@
+プログラミング演習２レポート課題（第5回）
+B162392 佐伯 雄飛
+
+課題１
+（プログラム）
+     1	#include<stdio.h>
+     2	
+     3	typedef struct complex{
+     4	    double re;
+     5	    double im;
+     6	   }COMPLEX;
+     7	   
+     8	COMPLEX addComplex(COMPLEX x,COMPLEX y){
+     9	  COMPLEX a;
+    10	  
+    11	  a.re = x.re + y.re;
+    12	  a.im = x.im + y.im;
+    13	
+    14	  return(a);
+    15	  
+    16	  }
+    17	  
+    18	COMPLEX mulComplex(COMPLEX x,COMPLEX y){
+    19	  COMPLEX b;
+    20	  
+    21	  b.re = x.re*y.re - x.im*y.im;
+    22	  b.im = x.re*y.im + x.im*y.re;
+    23	  return(b);
+    24	  
+    25	  }
+    26	  
+    27	int main(){
+    28	  COMPLEX x;
+    29	  COMPLEX y;
+    30	    
+    31	  printf("x.re=\n"); 
+    32	  scanf("%lf",&x.re);
+    33	  printf("x.im=\n"); 
+    34	  scanf("%lf",&x.im);
+    35	  printf("y.re=\n"); 
+    36	  scanf("%lf",&y.re);
+    37	  printf("y.im=\n"); 
+    38	  scanf("%lf",&y.im);
+    39	  
+    40	  COMPLEX a=addComplex(x, y);
+    41	    printf("和は%3.1lf + %3.1lf\n", a.re, a.im);
+    42	  
+    43	  COMPLEX b=mulComplex(x, y);
+    44	  printf("積は%3.1lf + %3.1lf\n", b.re, b.im);
+    45	  return 0;
+    46	  }
+    
+   
+（説明)
+3行目から6行目で構造体のテンプレート（実数部分を表すメンバと虚数部分を表すメンバ)を宣言
+8行目から１６行目で複素数の足し算を行い、表示する関数を定義
+18行目から25行目で複素数の掛け算を行い、表示する関数を定義
+28,29行目で構造体を宣言
+31から38行目でscanfを用いて、標準入力から構造体x,yの実数部分と虚数部分に値を与える
+40から41行目では先ほど定義した関数を用いて複素数の足し算をして、表示している
+43から45行目では先ほど定義した関数を用いて複素数の掛け算をして、表示している
+（実行結果）
+b162392@libc1c-029:/fs/home/b162392$ ./a.out
+x.re=
+3
+x.im=
+3
+y.re=
+3
+y.im=
+3
+和は6.0 + 6.0
+積は0.0 + 18.0
+
+
+課題２
+（プログラム）
+     1	#include<stdio.h>
+     2	
+     3	typedef struct data{
+     4	  char Family[30];
+     5	  char Given[30];
+     6	  long Number;
+     7	  }MEMBER;
+     8	
+     9	void printlist(MEMBER data[]){
+    10	 int n;
+    11	 for(n=0; n<5; n++){
+    12	  printf("%-15s %-15s %-15ld\n",data[n].Family, data[n].Given, data[n].Number);
+    13	  }
+    14	                              }
+    15	  
+    16	  
+    17	int main(){
+    18	
+    19	 
+    20	MEMBER data[5]={{"YOSHIWARA" , "MAYUKO" ,138372563},
+    21	                 {"HOSHINO" , "RIKO" , 1033268164},
+    22	                 {"TOKUTA" , "YOUSUKE" , 10399954282},
+    23	                 {"ICHIKI" , "SHUNNJI" , 1331104675},
+    24	                 {"OOTAKI" , "HIKARI" , 1525827198}};              
+    25	 
+    26	printf("Family name     Given name      Number\n");
+    27	printf("-----------------------------------------------------------------------------\n");
+    28	
+    29	printlist(data);
+    30	  
+    31	  return 0;
+    32	  
+    33	}
+
+
+（説明）
+3から7行目で構造体を宣言して、メンバを定義している
+9から13行目で構造体データの表示用関数の名前と引数を宣言、構造体データの表示を行う
+20から24行目で構造体にデータを与える
+26、27行目で表の上部を表示して
+29行目で先ほど作成した関数を用いて構造体を表示している
+
+(実行結果)
+b162392@libw31-010:/fs/home/b162392$ ./a.out
+Family name     Given name      Number
+-----------------------------------------------------------------------------
+YOSHIWARA       MAYUKO          138372563      
+HOSHINO         RIKO            1033268164     
+TOKUTA          YOUSUKE         1810019690     
+ICHIKI          SHUNNJI         1331104675     
+OOTAKI          HIKARI          1525827198     
+
+
+
+課題３
+（プログラム）
+     1	#include<stdio.h>
+     2	#define N 5
+     3	
+     4	typedef struct member{
+     5	    char fname[30];
+     6	    char gname[30];
+     7	    long number;
+     8	    }MEMBER;
+     9	    
+    10	
+    11	void printlist(MEMBER member[]){
+    12	  int n;
+    13	  for(n=0; n<5; n++){
+    14	    printf("%-15s %-15s %-15ld\n" ,member[n].fname,member[n].gname,member[n].number);
+    15	    }
+    16	    }
+    17	    
+    18	int main(){
+    19	int i,c;
+    20	FILE *fp;
+    21	fp = fopen("a.txt","r");
+    22	MEMBER data[N];
+    23	
+    24	for(i=0; i<N;i++){
+    25	  fscanf(fp, "%s %s %ld",&data[i].fname, &data[i].gname, &data[i].number);
+    26	  }
+    27	  
+    28	printf("Family name     Given name      Number\n");
+    29	printf("---------------------------------------------------------------------------\n");
+    30	printlist(data);
+    31	fclose(fp);
+    32	
+    33	return 0;
+    34	}
+   
+
+（説明）
+2行目で扱うデータの個数を定義
+4から8行目で構造体を宣言して、メンバを定義している
+11から15行目で構造体データの表示用関数の名前と引数を宣言、構造体データの表示を行う
+20,21行目でa.txtというファイルを読み出し専用で開いている
+24から26行目で構造体にa.txtのデータを与える
+28、29行目で表の上部を表示して
+30行目で先ほど作成した関数を用いて構造体を表示している
+31行目でファイルを閉じている
+（実行結果）
+b162392@libw31-010:/fs/home/b162392$ ./a.out
+Family name     Given name      Number
+---------------------------------------------------------------------------
+YOSHIWARA       MAYUKO          138372563      
+HOSHINO         RIKO            1033268164     
+TOKUTA          YOUSUKE         2147483647     
+ICHIKI          SHUNNJI         1331104675     
+OOTAKI          HIKARI          1525827198     
+
+
+
+

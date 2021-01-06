@@ -1,0 +1,57 @@
+第７回レポート課題
+3
+実行結果
+b162392@libw31-010:/fs/home/b162392$ ./a.out
+魔法陣です
+
+プログラミングの説明
+#include<stdio.h>
+main()
+{
+	int i;
+	int j;
+	int size =4;
+	int square[4][4]={
+			{16,3,2,13},
+			{5,10,11,8},
+			{9,6,7,12},
+			{4,15,14,1}
+			  };
+	int magic =1;
+	int total =0;
+	int sum1;
+	int sum2;
+	
+
+sum1 =0; sum2 =0;
+for(i=0;i<size;i++){
+for(j=0;j<size;j++){
+	sum1 += square[i][j];
+	sum2 += square[i][(size-1)-i];
+}}
+if(sum1 == sum2){
+	total == sum1;
+}else{
+	magic = 0;  
+}
+
+
+sum1 = 0; sum2 =0;
+for(i=0;i<size;i++){
+for(j=0;j<size;j++){
+		sum1 += square[i][j];
+		sum2 += square[j][i];
+}}
+
+if(magic == 1){
+	printf("魔法陣です\n");
+}else{
+	printf("魔法陣ではありません\n");
+	}
+}
+
+まず、整数を宣言するintを用いてi,j,size,square[4][4],magic,total,sum1,sum2を宣言する、その際、square[4][4]、magic,totalはその数値も宣言する。
+sum1とsum2は０を初期値として、i,jは０から１ずつ足していき、4より小さいという条件でfor文を２回用いてsum1には右下がり、sum2には右上がりの合計を代入し、次のif文によりそれがtotalと一致するかしないかを確かめている。
+次にまたsum1とsum2は０を初期値として、i,jは０から１ずつ足していき、4より小さいという条件でfor文を２回用いてsum1には横の合計、sum2には縦の合計を代入し、次のif文によりそれがtotalと一致するかしないかを確かめている。
+３つ目のif文により２回のif文の条件を満たす場合には「魔法陣出す」、満たさない場合には「魔法陣ではありません」と表示されるようにする。
+
